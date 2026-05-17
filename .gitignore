@@ -1,0 +1,30 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Linux
+*~
+.fuse_hidden*
+.Trash-*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Éditeurs
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Logs
+*.log
+
+# Build / déploiement Vercel
+.vercel
+
+# Métadonnées Claude / Cowork
+.claude/

@@ -437,10 +437,8 @@
         </header>
 
         <!--
-          Variante 2-3 avis : 3 cartes maximum.
-          Si le prospect n'a que 2 avis, SUPPRIMER le 3e <article>
-          ci-dessous (« {{avis_3}} ») : la grille recentre
-          automatiquement les 2 cartes restantes.
+          Variante 2-3 avis : 2 cartes affichées (avis_1 + avis_2),
+          centrées automatiquement par la grille flex.
         -->
         <div class="reviews-grid reviews-grid--center">
           <article class="review">
@@ -457,15 +455,6 @@
             <blockquote class="review-text">« {{avis_2}} »</blockquote>
             <footer class="review-meta">
               <span class="review-author">{{prénom_avis_2}}</span>
-              <span class="review-source">Avis Google vérifié</span>
-            </footer>
-          </article>
-
-          <article class="review">
-            <div class="review-stars" aria-label="5 sur 5">★★★★★</div>
-            <blockquote class="review-text">« {{avis_3}} »</blockquote>
-            <footer class="review-meta">
-              <span class="review-author">{{prénom_avis_3}}</span>
               <span class="review-source">Avis Google vérifié</span>
             </footer>
           </article>

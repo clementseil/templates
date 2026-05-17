@@ -925,17 +925,21 @@ a:hover { color: var(--color-accent); }
   .reviews-grid { grid-template-columns: repeat(4, 1fr); }
 }
 
-/* Variante 2-3 avis : layout fluide centré.
-   Fonctionne aussi bien avec 2 cartes qu'avec 3 (auto-centrées). */
+/* Variante 2-3 avis : 2 cartes plus grandes, de taille identique,
+   regroupées en un bloc compact et centré (cohérent avec la page). */
 .reviews-grid--center {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
+  align-items: stretch;          /* hauteurs identiques */
   gap: var(--sp-6);
+  max-width: 960px;              /* bloc resserré, centré */
+  margin-inline: auto;
 }
 .reviews-grid--center .review {
-  flex: 1 1 300px;
-  max-width: 380px;
+  flex: 1 1 0;                   /* largeurs strictement égales */
+  min-width: 300px;              /* passe en colonne sous ce seuil */
+  max-width: 480px;              /* nettement plus grandes qu'avant */
 }
 
 .review {

@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ===== SEO ===== -->
+  <title>{{nom_entreprise}} — Peintre artisan à {{ville}} | Devis gratuit</title>
+  <meta name="description" content="{{nom_entreprise}}, peintre artisan à {{ville}} et ses alentours. Peinture intérieure, extérieure et revêtements muraux. Devis gratuit sous 48h, garantie décennale, intervention sous 7 jours.">
+  <link rel="canonical" href="{{url_site}}">
+
+  <!-- ===== Open Graph ===== -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{nom_entreprise}} — Peintre artisan à {{ville}}">
+  <meta property="og:description" content="Peinture intérieure, extérieure et revêtements muraux à {{ville}}. Devis gratuit sous 48h.">
+  <meta property="og:url" content="{{url_site}}">
+  <meta property="og:image" content="{{url_site}}/assets/img/hero-painter.jpg">
+  <meta property="og:locale" content="fr_FR">
+
+  <!-- ===== Twitter Card ===== -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{nom_entreprise}} — Peintre artisan à {{ville}}">
+  <meta name="twitter:description" content="Peinture intérieure, extérieure et revêtements muraux à {{ville}}. Devis gratuit sous 48h.">
+  <meta name="twitter:image" content="{{url_site}}/assets/img/hero-painter.jpg">
+
+  <!-- ===== Fonts (preconnect + preload critique) ===== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- ===== Preload hero image (LCP) ===== -->
+  <link rel="preload" as="image" href="assets/img/hero-painter-paysage.jpg">
+
+  <!-- ===== CSS ===== -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+
+  <!-- ===== Schema.org LocalBusiness (Painter) ===== -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Painter",
+    "name": "{{nom_entreprise}}",
+    "image": "{{url_site}}/assets/img/hero-painter.jpg",
+    "url": "{{url_site}}",
+    "telephone": "{{numéro_de_téléphone}}",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "{{adresse_complète}}",
+      "addressLocality": "{{ville}}",
+      "addressCountry": "FR"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "{{note_google}}",
+      "reviewCount": "{{nombre_d_avis}}",
+      "bestRating": "5"
+    },
+    "priceRange": "€€",
+    "openingHours": "Mo-Fr 08:00-18:00",
+    "areaServed": {
+      "@type": "City",
+      "name": "{{ville}}"
+    }
+  }
+  </script>
+</head>
+<body>
+
+  <!-- ════════════════════════════════════════════════════ -->
+  <!--  1. HEADER STICKY                                    -->
+  <!-- ════════════════════════════════════════════════════ -->
+  <header class="site-header" id="site-header">
+    <div class="container header-inner">
+      <a href="#hero" class="brand" aria-label="{{nom_entreprise}} — retour à l'accueil">
+        <span class="brand-name">{{nom_entreprise}}</span>
+      </a>
+
+      <nav class="primary-nav" aria-label="Navigation principale">
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#realisations">Réalisations</a></li>
+          <li><a href="#process">Notre méthode</a></li>
+          <li><a href="#avis">Avis</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a href="#contact" class="btn btn-primary btn-sm header-cta">Devis gratuit</a>
+
+      <button class="nav-toggle" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="primary-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+
+  <main>
+
+    <!-- ════════════════════════════════════════════════════ -->
+    <!--  2. HERO                                              -->
+    <!-- ════════════════════════════════════════════════════ -->
+    <section class="hero" id="hero">
+      <div class="container hero-inner">
+        <div class="hero-content">
+          <p class="eyebrow">Peintre artisan · {{ville}}</p>
+
+          <h1 class="hero-title">
+            Votre projet peinture,
+            <span class="hero-title-accent">entre les mains d'experts</span>
+          </h1>
+
+          <p class="hero-sub">
+            Peinture intérieure, extérieure et revêtements muraux à {{ville}} et ses alentours. Devis gratuit sous 48h, garantie décennale, intervention sous 7 jours.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#contact" class="btn btn-primary">Demander un devis gratuit</a>
+            <a href="tel:{{numéro_de_téléphone}}" class="btn btn-ghost">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              {{numéro_de_téléphone}}
+            </a>
+          </div>
+
+          <div class="hero-signals">
+            <span class="signal-stars" aria-label="Note {{note_google}} sur 5">★★★★★</span>
+            <span>
+              <span class="count-up" data-target="{{note_google}}" data-decimals="1">{{note_google}}</span>/5
+              <span aria-hidden="true"> — </span>
+              <span class="count-up" data-target="{{nombre_d_avis}}">{{nombre_d_avis}}</span> avis Google
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════ -->
+    <!--  3. BANDEAU CONFIANCE                                 -->
+    <!-- ════════════════════════════════════════════════════ -->
+    <section class="trust-bar" aria-label="Garanties et engagements">
+      <div class="container trust-grid">
+        <div class="trust-item">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+            <polyline points="14 2 14 8 20 8"/>
+            <line x1="9" y1="15" x2="15" y2="15"/>
+          </svg>
+          <div>
+            <h3>Devis gratuit</h3>
+            <p>Sous 48h après la visite</p>
+          </div>
+        </div>
+        <div class="trust-item">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <div>
+            <h3>Garantie décennale</h3>
+            <p>Vos travaux protégés 10 ans</p>
+          </div>
+        </div>
+        <div class="trust-item">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M9 12l2 2 4-4"/>
+          </svg>
+          <div>
+            <h3>Assurance RC Pro</h3>
+            <p>Couverture chantier complète</p>
+          </div>
+        </div>
+        <div class="trust-item">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <polyline points="12 6 12 12 16 14"/>
+          </svg>
+          <div>
+            <h3>Intervention rapide</h3>
+            <p>Sous 7 jours après devis</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════ -->
+    <!--  4. SERVICES                                          -->
+    <!-- ════════════════════════════════════════════════════ -->
+    <section class="services section" id="services">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">Nos prestations</p>
+          <h2>Un savoir-faire complet, pour chaque support</h2>
+          <p class="section-lead">
+            De la simple remise à neuf d'une pièce à la rénovation complète d'une façade : nous intervenons sur tous types de chantiers avec la même exigence de finition.
+          </p>
+        </header>
+
+        <div class="services-grid">
+          <article class="service-card">
+            <div class="service-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9.06 11.9l8.07-8.06a2.85 2.85 0 1 1 4.03 4.03l-8.06 8.08"/>
+                <path d="M7.07 14.94c-1.66 0-3 1.35-3 3.02 0 1.33-2.5 1.52-2 2.02 1.08 1.1 2.49 2.02 4 2.02 2.2 0 4-1.8 4-4.04a3.01 3.01 0 0 0-3-3.02z"/>
+              </svg>
+            </div>
+            <span class="service-number" aria-hidden="true">01</span>
+            <h3>Peinture intérieure</h3>
+            <p>Murs, plafonds, boiseries. Préparation soignée, finitions impeccables et conseils en teintes adaptées à la luminosité de chaque pièce.</p>
+            <ul class="service-list">
+              <li>Salons, chambres, bureaux</li>
+              <li>Cuisines et salles d'eau</li>
+              <li>Portes, plinthes, encadrements</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="3" width="18" height="18" rx="2"/>
+                <path d="M3 9h18M9 3v18"/>
+              </svg>
+            </div>
+            <span class="service-number" aria-hidden="true">02</span>
+            <h3>Peinture extérieure</h3>
+            <p>Façades, volets, portails, ferronneries. Peintures durables, résistantes aux UV et aux intempéries. Traitement préventif des supports.</p>
+            <ul class="service-list">
+              <li>Façades enduit, brique, crépi</li>
+              <li>Volets bois et métal</li>
+              <li>Garde-corps et grilles</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="14" rx="1"/>
+                <path d="M3 10h18M8 5v14"/>
+              </svg>
+            </div>
+            <span class="service-number" aria-hidden="true">03</span>
+            <h3>Revêtements muraux</h3>
+            <p>Pose de papier peint, toile de verre, fibre de verre. Décollage des anciens revêtements et préparation minutieuse des supports pour des raccords parfaits.</p>
+            <ul class="service-list">
+              <li>Papier peint intissé, vinyle</li>
+              <li>Toiles de verre et fibres</li>
+              <li>Panoramiques et lés sur mesure</li>
+            </ul>
+          </article>
+
+          <article class="service-card">
+            <div class="service-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="13.5" cy="6.5" r="2.5"/>
+                <circle cx="17.5" cy="10.5" r="2.5"/>
+                <circle cx="8.5" cy="7.5" r="2.5"/>
+                <circle cx="6.5" cy="12.5" r="2.5"/>
+                <path d="M12 22a10 10 0 1 1 0-20c5.523 0 10 4.477 10 10 0 1.657-1.343 3-3 3h-1.5a2 2 0 0 0-2 2 2 2 0 0 1-2 2H12z"/>
+              </svg>
+            </div>
+            <span class="service-number" aria-hidden="true">04</span>
+            <h3>Conseil en couleurs</h3>
+            <p>Étude personnalisée des teintes selon votre style, vos volumes et la lumière naturelle de vos espaces. Échantillons et nuanciers présentés sur place.</p>
+            <ul class="service-list">
+              <li>Harmonisation pièce par pièce</li>
+              <li>Choix des finitions (mat, satiné, velours)</li>
+              <li>Peintures écologiques sur demande</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════ -->
+    <!--  5. RÉALISATIONS                                      -->
+    <!-- ════════════════════════════════════════════════════ -->
+    <section class="realisations section" id="realisations">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">Réalisations récentes</p>
+          <h2>Quelques chantiers menés à {{ville}} et alentours</h2>
+          <p class="section-lead">
+            Chaque projet est unique. Voici un aperçu de nos interventions récentes : intérieurs particuliers, façades, locaux professionnels.
+          </p>
+        </header>
+
+        <div class="gallery">
+          <figure class="gallery-item">
+            <img src="assets/img/renovation-1.avif" alt="Couloir contemporain avec verrière au plafond et parquet chevrons, murs et plafond peints en blanc mat" loading="lazy" width="900" height="1350">
+            <figcaption>Couloir lumineux · Verrière et parquet chevrons</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="assets/img/renovation-2.avif" alt="Entrée d'appartement haussmannien avec moulures, frise décorative et portes anciennes peintes en teintes claires" loading="lazy" width="900" height="1350">
+            <figcaption>Entrée haussmannienne · Moulures et boiseries</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="assets/img/renovation-3.avif" alt="Salon contemporain avec canapé cognac et tableaux encadrés sur un mur blanc cassé en finition mate" loading="lazy" width="900" height="1350">
+            <figcaption>Salon contemporain · Finition mate</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="assets/img/renovation-4.avif" alt="Pièce vide avec parquet chevrons, panneaux cannelés vitrés et murs clairs" loading="lazy" width="900" height="1200">
+            <figcaption>Pièce de réception · Finitions claires</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="assets/img/renovation-5.avif" alt="Cuisine ouverte en bois clair avec plafond blanc et accès sur l'extérieur" loading="lazy" width="900" height="1350">
+            <figcaption>Cuisine ouverte · Plafond et murs blancs</figcaption>
+          </figure>
+          <figure class="gallery-item">
+            <img src="assets/img/renovation-6.avif" alt="Salle de bains avec baignoire ovale devant un mur de lambris peints en vert sauge" loading="lazy" width="900" height="1350">
+            <figcaption>Salle de bains · Lambris vert sauge</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════ -->
+    <!--  5b. AVANT / APRÈS — slider interactif                -->
+    <!-- ════════════════════════════════════════════════════ -->
+    <section class="before-after section" id="avant-apres">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">Avant / après</p>
+          <h2>Le résultat parle de lui-même</h2>
+          <p class="section-lead">
+            Déplacez le curseur de gauche à droite pour découvrir la transformation.
+          </p>
+        </header>
+
+        <div
+          class="ba-slider"
+          role="group"
+          aria-label="Comparaison avant / après. Utilisez les flèches gauche et droite pour déplacer le curseur."
+          style="--ba-position: 50%;"
+        >
+          <img
+            class="ba-img ba-img--after"
+            src="assets/img/apres.avif"
+            alt="Pièce après les travaux de peinture"
+            loading="lazy"
+            width="900" height="1350"
+          >
+          <img
+            class="ba-img ba-img--before"
+            src="assets/img/avant.jpg"
+            alt="Pièce avant les travaux de peinture"
+            loading="lazy"
+            width="900" height="1350"
+          >
+
+          <span class="ba-label ba-label--before" aria-hidden="true">Avant</span>
+          <span class="ba-label ba-label--after"  aria-hidden="true">Après</span>
+
+          <button
+            class="ba-handle"
+            type="button"
+            aria-label="Curseur de comparaison"
+            role="slider"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            aria-valuenow="50"
+          >
+            <span class="ba-handle-line" aria-hidden="true"></span>
+            <span class="ba-handle-knob" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="15 18 9 12 15 6"/>
+                <polyline points="9 18 15 12 9 6" transform="translate(8 0)"/>
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════ -->
+    <!--  6. PROCESS                                           -->
+    <!-- ════════════════════════════════════════════════════ -->
+    <section class="process section" id="process">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">Notre méthode</p>
+          <h2>De votre première prise de contact à la livraison</h2>
+          <p class="section-lead">
+            Quatre étapes claires, sans surprise. Vous savez toujours où vous en êtes.
+          </p>
+        </header>
+
+        <ol class="steps">
+          <li class="step">
+            <span class="step-number">01</span>
+            <h3>Prise de contact</h3>
+            <p>Vous nous appelez ou remplissez le formulaire en ligne. Nous échangeons sous 24h sur votre projet, vos contraintes et vos délais.</p>
+          </li>
+          <li class="step">
+            <span class="step-number">02</span>
+            <h3>Visite & devis</h3>
+            <p>Déplacement gratuit pour évaluer le chantier. Vous recevez un devis détaillé, transparent, sans engagement, sous 48h.</p>
+          </li>
+          <li class="step">
+            <span class="step-number">03</span>
+            <h3>Réalisation</h3>
+            <p>Préparation des supports, peinture, finitions. Chantier propre, plages horaires respectées, équipe en tenue à votre image.</p>
+          </li>
+          <li class="step">
+            <span class="step-number">04</span>
+            <h3>Livraison & garantie</h3>
+            <p>Vérification finale ensemble. Activation de la garantie décennale. Vous êtes serein, et le résultat est exactement celui prévu.</p>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════ -->
+    <!--  7. TÉMOIGNAGES                                       -->
+    <!--  TODO : ces variables sont remplies via l'automatisation Make. -->
+    <!--  Les 3 avis affichés proviennent du Notion du prospect.       -->
+    <!-- ════════════════════════════════════════════════════ -->
+    <section class="reviews section" id="avis">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">Avis clients vérifiés</p>
+          <h2>Ils nous ont fait confiance</h2>
+          <p class="section-lead">
+            <span class="signal-stars">★★★★★</span>
+            <span class="count-up" data-target="{{note_google}}" data-decimals="1">{{note_google}}</span>/5
+            <span aria-hidden="true"> — </span>
+            <span class="count-up" data-target="{{nombre_d_avis}}">{{nombre_d_avis}}</span> avis Google
+          </p>
+        </header>
+
+        <div class="reviews-grid">
+          <article class="review">
+            <div class="review-stars" aria-label="5 sur 5">★★★★★</div>
+            <blockquote class="review-text">« {{avis_1}} »</blockquote>
+            <footer class="review-meta">
+              <span class="review-author">{{prénom_avis_1}}</span>
+              <span class="review-source">Avis Google vérifié</span>
+            </footer>
+          </article>
+
+          <article class="review">
+            <div class="review-stars" aria-label="5 sur 5">★★★★★</div>
+            <blockquote class="review-text">« {{avis_2}} »</blockquote>
+            <footer class="review-meta">
+              <span class="review-author">{{prénom_avis_2}}</span>
+              <span class="review-source">Avis Google vérifié</span>
+            </footer>
+          </article>
+
+          <article class="review">
+            <div class="review-stars" aria-label="5 sur 5">★★★★★</div>
+            <blockquote class="review-text">« {{avis_3}} »</blockquote>
+            <footer class="review-meta">
+              <span class="review-author">{{prénom_avis_3}}</span>
+              <span class="review-source">Avis Google vérifié</span>
+            </footer>
+          </article>
+
+          <article class="review">
+            <div class="review-stars" aria-label="5 sur 5">★★★★★</div>
+            <blockquote class="review-text">« {{avis_4}} »</blockquote>
+            <footer class="review-meta">
+              <span class="review-author">{{prénom_avis_4}}</span>
+              <span class="review-source">Avis Google vérifié</span>
+            </footer>
+          </article>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════ -->
+    <!--  8. ZONE D'INTERVENTION                               -->
+    <!-- ════════════════════════════════════════════════════ -->
+    <section class="zone section" id="zone">
+      <div class="container zone-inner">
+        <div class="zone-content">
+          <p class="eyebrow">Zone d'intervention</p>
+          <h2>Présents à {{ville}} et dans tout le département</h2>
+          <p>
+            Nous intervenons quotidiennement à {{ville}} et dans ses alentours. Devis et déplacement gratuits, sans engagement, sur l'ensemble de notre zone.
+          </p>
+          <p class="zone-note">
+            Une question sur votre commune ? <a href="#contact">Contactez-nous</a> — nous étudions chaque demande.
+          </p>
+        </div>
+
+        <div class="zone-map">
+          <!-- Make remplace {{adresse_complète}} par l'adresse du prospect.
+               Le navigateur encode automatiquement les espaces et caractères spéciaux. -->
+          <iframe
+            title="Carte de localisation de {{nom_entreprise}}"
+            src="https://www.google.com/maps?q={{adresse_complète}}&output=embed"
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+            allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════ -->
+    <!--  9. FAQ                                               -->
+    <!-- ════════════════════════════════════════════════════ -->
+    <section class="faq section" id="faq">
+      <div class="container">
+        <header class="section-head">
+          <p class="eyebrow">Questions fréquentes</p>
+          <h2>Tout ce que vous voulez savoir avant de nous contacter</h2>
+        </header>
+
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Quels sont vos délais d'intervention ?</summary>
+            <div class="faq-answer">
+              <p>Après acceptation du devis, nous démarrons généralement le chantier sous 7 à 15 jours selon la période. Pour les urgences (dégâts des eaux, état des lieux), nous faisons notre maximum pour intervenir sous 48h.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Le devis est-il vraiment gratuit et sans engagement ?</summary>
+            <div class="faq-answer">
+              <p>Oui, totalement. Nous nous déplaçons gratuitement pour évaluer votre projet, vous recevez un devis détaillé sous 48h, et vous décidez ensuite librement. Aucun frais caché, aucune obligation.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Êtes-vous assuré ?</summary>
+            <div class="faq-answer">
+              <p>Bien sûr. Nous disposons d'une responsabilité civile professionnelle et d'une garantie décennale. Les attestations vous sont remises à la signature du devis sur simple demande.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Utilisez-vous des peintures écologiques ?</summary>
+            <div class="faq-answer">
+              <p>Oui, nous proposons systématiquement une option de peintures écologiques (faible teneur en COV, écolabels européens). N'hésitez pas à le mentionner lors du devis : c'est un choix sans surcoût important pour la plupart des chantiers.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Comment se passe la préparation des supports ?</summary>
+            <div class="faq-answer">
+              <p>La qualité d'une peinture dépend à 80 % de la préparation. Selon les supports, nous décollons, lessivons, rebouchons, ponçons, appliquons une sous-couche adaptée. C'est compris dans nos devis.</p>
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary>Quels sont les modes de paiement acceptés ?</summary>
+            <div class="faq-answer">
+              <p>Chèque, virement, espèces. Acompte de 30 % à la signature, solde à la réception.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- ════════════════════════════════════════════════════ -->
+    <!--  10. CONTACT                                          -->
+    <!-- ════════════════════════════════════════════════════ -->
+    <section class="contact section" id="contact">
+      <div class="container contact-inner">
+
+        <div class="contact-intro">
+          <p class="eyebrow">Contact</p>
+          <h2>Parlons de votre projet</h2>
+          <p class="section-lead">
+            Décrivez-nous votre projet en quelques lignes. Nous revenons vers vous sous 24h ouvrées pour convenir d'une visite et préparer votre devis.
+          </p>
+
+          <ul class="contact-info">
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+              </svg>
+              <a href="tel:{{numéro_de_téléphone}}">{{numéro_de_téléphone}}</a>
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M12 2a7 7 0 0 0-7 7c0 5 7 13 7 13s7-8 7-13a7 7 0 0 0-7-7z"/>
+                <circle cx="12" cy="9" r="2.5"/>
+              </svg>
+              <span>{{adresse_complète}}</span>
+            </li>
+            <li>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+              </svg>
+              <span>Lundi — Vendredi · 8h – 18h</span>
+            </li>
+          </ul>
+        </div>
+
+        <!--
+          Formulaire : pas de backend. Pour brancher Formspree :
+          - Remplacer action="" par votre endpoint Formspree (ex: https://formspree.io/f/xxxxxxx)
+          - Conserver method="POST"
+          - La validation côté navigateur est assurée par les attributs required + pattern.
+        -->
+        <form class="contact-form" action="" method="POST" novalidate>
+          <h3 class="visually-hidden">Formulaire de demande de devis</h3>
+
+          <div class="form-row">
+            <label for="form-nom">Nom complet <span aria-hidden="true">*</span></label>
+            <input type="text" id="form-nom" name="nom" required autocomplete="name" minlength="2">
+          </div>
+
+          <div class="form-row form-row-split">
+            <div>
+              <label for="form-tel">Téléphone <span aria-hidden="true">*</span></label>
+              <input type="tel" id="form-tel" name="telephone" required autocomplete="tel" pattern="[0-9\s\-\+\.]{10,}">
+            </div>
+            <div>
+              <label for="form-email">Email</label>
+              <input type="email" id="form-email" name="email" autocomplete="email">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label for="form-type">Type de projet</label>
+            <select id="form-type" name="type_projet">
+              <option value="">— Sélectionnez —</option>
+              <option value="interieur">Peinture intérieure</option>
+              <option value="exterieur">Peinture extérieure / façade</option>
+              <option value="revetement">Pose de revêtements muraux</option>
+              <option value="renovation">Rénovation complète</option>
+              <option value="conseil">Conseil en couleurs</option>
+              <option value="autre">Autre / je ne sais pas</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="form-message">Votre message <span aria-hidden="true">*</span></label>
+            <textarea id="form-message" name="message" rows="5" required minlength="10" placeholder="Décrivez en quelques mots votre projet, les pièces concernées, les délais souhaités…"></textarea>
+          </div>
+
+          <div class="form-row form-row-consent">
+            <input type="checkbox" id="form-rgpd" name="rgpd" required>
+            <label for="form-rgpd">J'accepte que mes données soient utilisées pour le traitement de ma demande de devis. <span aria-hidden="true">*</span></label>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">Envoyer ma demande</button>
+
+          <p class="form-note">Réponse sous 24h ouvrées. Aucun engagement.</p>
+        </form>
+
+      </div>
+    </section>
+
+  </main>
+
+
+  <!-- ════════════════════════════════════════════════════ -->
+  <!--  11. FOOTER                                           -->
+  <!-- ════════════════════════════════════════════════════ -->
+  <footer class="site-footer">
+    <div class="container footer-grid">
+
+      <div class="footer-brand">
+        <span class="brand-name">{{nom_entreprise}}</span>
+        <p>Peintre artisan à {{ville}}. Devis gratuit, garantie décennale, intervention sous 7 jours.</p>
+      </div>
+
+      <nav class="footer-nav" aria-label="Navigation pied de page">
+        <h4>Le site</h4>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#realisations">Réalisations</a></li>
+          <li><a href="#process">Notre méthode</a></li>
+          <li><a href="#avis">Avis clients</a></li>
+          <li><a href="#faq">Questions fréquentes</a></li>
+        </ul>
+      </nav>
+
+      <div class="footer-contact">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:{{numéro_de_téléphone}}">{{numéro_de_téléphone}}</a></li>
+          <li>{{adresse_complète}}</li>
+        </ul>
+      </div>
+
+      <div class="footer-legal">
+        <h4>Mentions</h4>
+        <ul>
+          <li><a href="#mentions">Mentions légales</a></li>
+          <li><a href="#rgpd">Politique de confidentialité (RGPD)</a></li>
+          <li><a href="#cookies">Gestion des cookies</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container">
+        <p>© <span id="footer-year">2025</span> {{nom_entreprise}} — Tous droits réservés. Site réalisé par LeSiteArtisan.</p>
+      </div>
+    </div>
+  </footer>
+
+
+  <!-- ===== GSAP via CDN ===== -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/SplitText.min.js" defer></script>
+
+  <!-- ===== JS modules ===== -->
+  <script src="js/main.js" defer></script>
+  <script src="js/animations.js" defer></script>
+
+</body>
+</html>

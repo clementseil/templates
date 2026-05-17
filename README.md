@@ -80,3 +80,4 @@ Tout `git push` sur `main` redéploie automatiquement les projets impactés.
 ## Stack
 
 HTML5 sémantique + CSS vanilla (custom properties) + Vanilla JS (IIFE) + GSAP via CDN. Aucun build, aucun npm, aucun framework.
+

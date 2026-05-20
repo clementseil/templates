@@ -354,10 +354,17 @@ a:hover { color: var(--color-accent); }
     display: block;
     position: fixed;
     top: var(--header-height);
-    left: 0; right: 0; bottom: 0;
+    left: 0; right: 0;
+    /* Hauteur explicite : le header a un backdrop-filter, il devient
+       donc le bloc conteneur des descendants position:fixed. S'appuyer
+       sur bottom:0 ferait collapser le panneau à la hauteur du header.
+       On force donc la hauteur plein écran sous le header. */
+    height: calc(100vh - var(--header-height));
+    height: calc(100dvh - var(--header-height));
     background: var(--color-bg);
     padding: var(--sp-8) var(--container-pad);
     z-index: 99;
+    overflow-y: auto;
   }
   .primary-nav.is-open ul {
     flex-direction: column;
@@ -394,13 +401,26 @@ a:hover { color: var(--color-accent); }
   background-position: center center;
   z-index: 0;
 }
-/* Vignettage : assombrissement très léger sur les bords pour focaliser */
+/* Scrim cinématique : l'image est ternie côté texte (gauche) pour un
+   contraste fort et un rendu premium, puis s'éclaircit vers la droite. */
 .hero::after {
   content: "";
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 65% 50%, transparent 30%, rgba(20, 41, 72, 0.18) 100%);
+    linear-gradient(
+      90deg,
+      rgba(18, 33, 56, 0.82) 0%,
+      rgba(18, 33, 56, 0.62) 40%,
+      rgba(18, 33, 56, 0.22) 72%,
+      rgba(18, 33, 56, 0.06) 100%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(18, 33, 56, 0.22) 0%,
+      rgba(18, 33, 56, 0.08) 45%,
+      rgba(18, 33, 56, 0.38) 100%
+    );
   z-index: 1;
   pointer-events: none;
 }
@@ -416,38 +436,79 @@ a:hover { color: var(--color-accent); }
   display: block;
 }
 
-/* Carte flottante en verre dépoli — pattern glassmorphique premium */
+/* Plus d'encart : le texte est posé directement sur l'image. */
 .hero-content {
-  max-width: 720px;
+  max-width: 680px;
   position: relative;
-  background: rgba(250, 247, 241, 0.82);
-  backdrop-filter: blur(28px) saturate(160%);
-  -webkit-backdrop-filter: blur(28px) saturate(160%);
-  padding: clamp(2.75rem, 4.5vw, 4rem) clamp(2.25rem, 4vw, 3.5rem);
-  border-radius: var(--radius-lg);
-  border: 1px solid rgba(255, 255, 255, 0.5);
-  box-shadow:
-    0 1px 2px rgba(20, 41, 72, 0.04),
-    0 24px 60px rgba(20, 41, 72, 0.18);
+  padding-top: var(--sp-6);
 }
 
-/* Détail premium : trait d'accent en haut de la carte */
+/* Détail premium : court trait d'accent au-dessus du texte */
 .hero-content::before {
   content: "";
   position: absolute;
   top: 0;
-  left: clamp(2.25rem, 4vw, 3.5rem);
+  left: 0;
   width: 56px;
   height: 3px;
   background: var(--color-accent);
   border-radius: 0 0 var(--radius-sm) var(--radius-sm);
 }
 
-/* Sur mobile, la carte prend toute la largeur disponible */
+/* ── Texte clair, fort contraste, sur l'image ──
+   Sélecteurs préfixés .hero pour gagner la cascade face aux
+   règles .hero-sub / .hero-signals définies plus bas. */
+.hero .eyebrow {
+  color: var(--color-accent);
+}
+.hero .hero-title {
+  color: #fff;
+  text-shadow: 0 2px 18px rgba(10, 20, 35, 0.45);
+}
+.hero .hero-title-accent {
+  color: var(--color-accent);
+}
+.hero .hero-sub {
+  color: rgba(255, 255, 255, 0.95);
+  text-shadow: 0 1px 10px rgba(10, 20, 35, 0.45);
+  max-width: 540px;
+}
+.hero .hero-signals {
+  color: rgba(255, 255, 255, 0.85);
+}
+.hero .signal-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  background: var(--color-accent);
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.hero .btn-ghost {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.55);
+  background: rgba(255, 255, 255, 0.06);
+}
+.hero .btn-ghost:hover {
+  background: #fff;
+  color: #142138;
+  border-color: #fff;
+}
+
 @media (max-width: 640px) {
   .hero-content {
     max-width: none;
     width: 100%;
+  }
+  /* Sur mobile, l'image est recadrée sur sa partie droite
+     (le peintre) — plus flatteur que le centre/gauche. */
+  .hero::before {
+    background-position: 78% center;
   }
 }
 

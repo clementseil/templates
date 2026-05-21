@@ -1432,3 +1432,55 @@ a:hover { color: var(--color-accent); }
   .site-header, .nav-toggle, .hero-actions, .contact-form { display: none; }
   body { background: #fff; color: #000; }
 }
+
+
+/* ═══════════════════════════════════════════════════════════
+   SERVICES — V1 : bandeau image haut (cartes avec images)
+   ═══════════════════════════════════════════════════════════ */
+
+/* ── V1 : bandeau image haut ── */
+.services-v1 .service-card-v1 {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--dur-base) var(--ease-out),
+              box-shadow var(--dur-base) var(--ease-out);
+}
+.services-v1 .service-card-v1:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+.sv1-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+.sv1-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--dur-slow) var(--ease-out);
+}
+.services-v1 .service-card-v1:hover .sv1-media img {
+  transform: scale(1.06);
+}
+.sv1-num {
+  position: absolute;
+  bottom: var(--sp-3);
+  left: var(--sp-3);
+  background: var(--color-accent);
+  color: #fff;
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  line-height: 1;
+  padding: 6px 10px;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0.5px;
+}
+.sv1-body { padding: var(--sp-6); display: flex; flex-direction: column; gap: var(--sp-3); flex: 1; }
+.sv1-body h3 { font-size: 1.375rem; }
+.sv1-body p { color: var(--color-text-muted); font-size: 0.9375rem; line-height: 1.55; flex: 1; }

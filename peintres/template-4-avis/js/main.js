@@ -230,4 +230,31 @@
 
     slider.addEventListener('dragstart', (e) => e.preventDefault());
   });
+  /* ─── 7. Badge Avis Google flottant + panneau latéral ─── */
+  const reviewsBadge = document.querySelector('.reviews-badge');
+  const reviewsPanel = document.getElementById('reviews-panel');
+  if (reviewsBadge && reviewsPanel) {
+    const openPanel = () => {
+      reviewsPanel.classList.add('is-open');
+      reviewsPanel.setAttribute('aria-hidden', 'false');
+      reviewsBadge.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    };
+    const closePanel = () => {
+      reviewsPanel.classList.remove('is-open');
+      reviewsPanel.setAttribute('aria-hidden', 'true');
+      reviewsBadge.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      try { reviewsBadge.focus({ preventScroll: true }); } catch (_) {}
+    };
+    reviewsBadge.addEventListener('click', openPanel);
+    reviewsPanel.querySelectorAll('[data-rp-close]').forEach((el) => {
+      el.addEventListener('click', closePanel);
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && reviewsPanel.classList.contains('is-open')) {
+        closePanel();
+      }
+    });
+  }
 })();

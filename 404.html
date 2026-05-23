@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Page introuvable · LeSiteArtisan</title>
+  <meta name="theme-color" content="#FAF7F1" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── Design tokens (alignés sur les templates) ─── */
+    :root {
+      --color-primary:      #1E3A5F;
+      --color-bg:           #FAF7F1;
+      --color-bg-alt:       #F1ECE0;
+      --color-surface:      #FFFFFF;
+      --color-border:       #E5DDD0;
+      --color-text:         #1A1F26;
+      --color-text-muted:   #5C6470;
+      --color-accent:       #E8753A;
+      --color-accent-dark:  #C95C24;
+
+      --font-serif: 'DM Serif Display', Georgia, serif;
+      --font-sans:  'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+      --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      color: var(--color-text);
+      background: var(--color-bg);
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* ─── Décor : courbes terracotta très douces en arrière-plan ─── */
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      pointer-events: none;
+      z-index: 0;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.18;
+    }
+    body::before {
+      width: 520px; height: 520px;
+      background: var(--color-accent);
+      top: -180px; left: -180px;
+    }
+    body::after {
+      width: 620px; height: 620px;
+      background: var(--color-primary);
+      bottom: -220px; right: -220px;
+      opacity: 0.10;
+    }
+
+    /* ─── Header minimal ─── */
+    .top {
+      position: relative;
+      z-index: 1;
+      padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1.5rem, 5vw, 3rem);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .brand {
+      font-family: var(--font-serif);
+      font-size: 1.5rem;
+      color: var(--color-primary);
+      letter-spacing: -0.01em;
+      text-decoration: none;
+    }
+    .top-meta {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+    }
+
+    /* ─── Bloc central ─── */
+    .stage {
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(2rem, 6vw, 4rem) clamp(1.5rem, 5vw, 3rem);
+    }
+    .card {
+      max-width: 640px;
+      width: 100%;
+      text-align: center;
+      animation: rise 0.9s var(--ease-out) both;
+    }
+    @keyframes rise {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: none; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .card { animation: none; }
+    }
+
+    .eyebrow {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--color-accent);
+      margin-bottom: 1rem;
+    }
+
+    .code {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      line-height: 0.95;
+      font-size: clamp(7rem, 22vw, 14rem);
+      color: var(--color-primary);
+      letter-spacing: -0.04em;
+      margin: 0;
+      position: relative;
+      display: inline-block;
+    }
+    /* Le "0" central en terracotta italique pour un détail premium */
+    .code .zero {
+      font-style: italic;
+      color: var(--color-accent);
+      margin: 0 0.04em;
+    }
+    /* Trait d'accent sous le code */
+    .accent-bar {
+      display: block;
+      width: 56px;
+      height: 3px;
+      background: var(--color-accent);
+      border-radius: 999px;
+      margin: 1.5rem auto 2rem;
+    }
+
+    h1 {
+      font-family: var(--font-serif);
+      font-weight: 400;
+      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      line-height: 1.15;
+      letter-spacing: -0.015em;
+      margin: 0 0 0.75rem;
+      color: var(--color-text);
+    }
+    .lead {
+      font-size: clamp(1rem, 1.4vw, 1.0625rem);
+      line-height: 1.6;
+      color: var(--color-text-muted);
+      margin: 0 auto;
+      max-width: 480px;
+    }
+
+    .actions {
+      margin-top: 2.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: 0.9375rem;
+      padding: 0.875rem 1.5rem;
+      border-radius: 8px;
+      border: 1px solid transparent;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 250ms var(--ease-out),
+                  color 250ms var(--ease-out),
+                  border-color 250ms var(--ease-out),
+                  transform 150ms var(--ease-out),
+                  box-shadow 250ms var(--ease-out);
+    }
+    .btn:active { transform: translateY(1px); }
+    .btn-primary {
+      background: var(--color-accent);
+      color: #fff;
+      box-shadow: 0 2px 10px rgba(232, 117, 58, 0.25);
+    }
+    .btn-primary:hover {
+      background: var(--color-accent-dark);
+      box-shadow: 0 4px 20px rgba(232, 117, 58, 0.35);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--color-text);
+      border-color: var(--color-border);
+    }
+    .btn-ghost:hover {
+      background: var(--color-text);
+      color: #fff;
+      border-color: var(--color-text);
+    }
+    .arrow { transition: transform 250ms var(--ease-out); }
+    .btn:hover .arrow { transform: translateX(3px); }
+
+    /* ─── Footer minimal ─── */
+    .bottom {
+      position: relative;
+      z-index: 1;
+      padding: 1.5rem clamp(1.5rem, 5vw, 3rem) 2rem;
+      text-align: center;
+      font-size: 0.8125rem;
+      color: var(--color-text-muted);
+    }
+    .bottom a {
+      color: var(--color-text);
+      text-decoration: none;
+      border-bottom: 1px solid var(--color-border);
+      transition: color 250ms var(--ease-out),
+                  border-color 250ms var(--ease-out);
+    }
+    .bottom a:hover {
+      color: var(--color-accent);
+      border-bottom-color: var(--color-accent);
+    }
+
+    @media (max-width: 480px) {
+      .top { padding-block: 1.25rem; }
+      .top-meta { display: none; }
+      .actions { flex-direction: column; align-items: stretch; }
+      .btn { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="top">
+    <a href="https://lesiteartisan.fr" class="brand" rel="noopener">LeSiteArtisan</a>
+    <span class="top-meta">Erreur 404</span>
+  </header>
+
+  <main class="stage">
+    <div class="card">
+      <p class="eyebrow">Page introuvable</p>
+
+      <h2 class="code" aria-label="Erreur 404">
+        4<span class="zero">0</span>4
+      </h2>
+
+      <span class="accent-bar" aria-hidden="true"></span>
+
+      <h1>Cette page n'existe pas — ou plus.</h1>
+      <p class="lead">
+        Le lien que vous avez suivi est peut-être obsolète, mal saisi,
+        ou la page a été déplacée. Pas d'inquiétude, on vous remet sur les rails.
+      </p>
+
+      <div class="actions">
+        <a href="https://lesiteartisan.fr" class="btn btn-primary" rel="noopener">
+          Visiter LeSiteArtisan
+          <span class="arrow" aria-hidden="true">→</span>
+        </a>
+        <a href="mailto:clement.seiler@lesiteartisan.fr" class="btn btn-ghost">
+          Nous contacter
+        </a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="bottom">
+    Site réalisé par
+    <a href="https://lesiteartisan.fr" rel="noopener">LeSiteArtisan</a>
+    — sites web pour artisans
+  </footer>
+
+</body>
+</html>

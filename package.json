@@ -1,0 +1,9 @@
+{
+  "name": "templates-lesiteartisan",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Templates one-page pour prospection peintres (routing par slug + Notion)",
+  "dependencies": {
+    "@notionhq/client": "^2.2.15"
+  }
+}

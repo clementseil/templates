@@ -26,5 +26,9 @@ Desktop.ini
 # Build / déploiement Vercel
 .vercel
 
+# Node
+node_modules/
+package-lock.json
+
 # Métadonnées Claude / Cowork
 .claude/

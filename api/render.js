@@ -151,6 +151,18 @@ module.exports = async (req, res) => {
     // 6.b. Extraction des données
     const data = buildDataFromNotionPage(result.results[0], slug);
 
+    // 6.b.bis. Mode debug : ?debug=1 → renvoie le JSON des données extraites
+    // au lieu du HTML. Très utile pour vérifier ce que Notion renvoie.
+    if (req.query.debug === '1') {
+      res.setHeader('Content-Type', 'application/json; charset=utf-8');
+      return res.status(200).send(JSON.stringify({
+        slug,
+        templateDir: pickTemplateDir(data._nbAvis),
+        data,
+        rawNotionProperties: Object.keys(result.results[0].properties)
+      }, null, 2));
+    }
+
     // 6.c. Choix du template selon nbAvis
     const templateDir = pickTemplateDir(data._nbAvis);
     const templatePath = path.join(process.cwd(), 'peintres', templateDir, 'index.html');

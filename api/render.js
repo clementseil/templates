@@ -7,8 +7,11 @@
  * renvoie la page HTML personnalisée.
  *
  * Variables d'env nécessaires (à configurer dans Vercel Project Settings) :
- *   - NOTION_TOKEN   : token d'intégration interne Notion (secret_... ou ntn_...)
- *   - NOTION_DB_ID   : ID de la base "peintres sans site"
+ *   - NOTION_TOKEN          : token d'intégration interne Notion (secret_... ou ntn_...)
+ *   - NOTION_DB_ID          : ID de la base "peintres SANS site" (interrogée en priorité)
+ *   - NOTION_DB_ID_AVEC_SITE : (optionnel) ID de la base "peintres AVEC site"
+ *                              Si défini, render.js cherche aussi dans cette DB
+ *                              quand le slug n'est pas trouvé dans la première.
  */
 
 const { Client } = require('@notionhq/client');
@@ -17,6 +20,7 @@ const path = require('path');
 
 const notion = new Client({ auth: process.env.NOTION_TOKEN });
 const DB_ID = process.env.NOTION_DB_ID;
+const DB_ID_AVEC_SITE = process.env.NOTION_DB_ID_AVEC_SITE; // optionnel
 const HOST = 'https://apercu.lesiteartisan.fr';
 
 // Slugs réservés qu'on n'essaie même pas de chercher dans Notion
@@ -124,6 +128,20 @@ function rewriteAssetPaths(html, templateDir) {
 }
 
 /* ──────────────────────────────────────────────────────────────────────────
+ * 5.bis. Helper : interroge une DB Notion par slug (utilisé pour les 2 DBs)
+ * ────────────────────────────────────────────────────────────────────────── */
+async function queryDbBySlug(databaseId, slug) {
+  return notion.databases.query({
+    database_id: databaseId,
+    filter: {
+      property: 'slug',
+      rich_text: { equals: slug }
+    },
+    page_size: 1
+  });
+}
+
+/* ──────────────────────────────────────────────────────────────────────────
  * 6. Handler principal
  * ────────────────────────────────────────────────────────────────────────── */
 module.exports = async (req, res) => {
@@ -134,15 +152,15 @@ module.exports = async (req, res) => {
   }
 
   try {
-    // 6.a. Query Notion : trouve la ligne dont la colonne "slug" = slug demandé
-    const result = await notion.databases.query({
-      database_id: DB_ID,
-      filter: {
-        property: 'slug',
-        rich_text: { equals: slug }
-      },
-      page_size: 1
-    });
+    // 6.a. Query Notion : cherche d'abord dans la DB SANS SITE, puis
+    //      dans la DB AVEC SITE si rien trouvé (et si la 2e DB est configurée).
+    let result = await queryDbBySlug(DB_ID, slug);
+    let matchedDb = 'sans_site';
+
+    if (result.results.length === 0 && DB_ID_AVEC_SITE) {
+      result = await queryDbBySlug(DB_ID_AVEC_SITE, slug);
+      matchedDb = 'avec_site';
+    }
 
     if (result.results.length === 0) {
       return res.status(404).send(notFoundPage(slug));
@@ -157,6 +175,7 @@ module.exports = async (req, res) => {
       res.setHeader('Content-Type', 'application/json; charset=utf-8');
       return res.status(200).send(JSON.stringify({
         slug,
+        matchedDb,
         templateDir: pickTemplateDir(data._nbAvis),
         data,
         rawNotionProperties: Object.keys(result.results[0].properties)
@@ -166,6 +185,10 @@ module.exports = async (req, res) => {
     // 6.c. Choix du template selon nbAvis
     const templateDir = pickTemplateDir(data._nbAvis);
     const templatePath = path.join(process.cwd(), 'peintres', templateDir, 'index.html');
+
+    // og_image : URL absolue vers le hero du template (pour les previews DM/Insta/etc.)
+    // Doit être absolu car les balises og:image / twitter:image ne supportent pas le relatif.
+    data.og_image = `${HOST}/peintres/${templateDir}/assets/img/hero-painter.jpg`;
 
     if (!fs.existsSync(templatePath)) {
       console.error(`Template introuvable : ${templatePath}`);
@@ -191,6 +214,7 @@ module.exports = async (req, res) => {
     // 6.g. Header debug (visible dans devtools Network) pour vérifier ce qui s'est passé
     res.setHeader('X-Render-Template', templateDir);
     res.setHeader('X-Render-Slug', slug);
+    res.setHeader('X-Render-Db', matchedDb);
 
     return res.status(200).send(html);
 

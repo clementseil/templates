@@ -1112,17 +1112,6 @@ a:hover { color: var(--color-accent); }
   overflow: hidden;
   isolation: isolate;
 }
-.faq::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: url("../assets/img/hero-painter-paysage.jpg") center/cover no-repeat;
-  filter: grayscale(100%);
-  opacity: 0.22;
-  z-index: -1;
-  pointer-events: none;
-}
-
 .faq-list {
   max-width: 800px;
   margin-inline: auto;
@@ -1180,7 +1169,13 @@ a:hover { color: var(--color-accent); }
 /* ═══════════════════════════════════════════════════════════
    CONTACT
    ═══════════════════════════════════════════════════════════ */
-.contact { background: var(--color-bg); }
+.contact {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% -10%,
+      rgba(184, 153, 104, 0.22) 0%,
+      transparent 60%),
+    var(--color-bg);
+}
 
 .contact-inner {
   display: grid;

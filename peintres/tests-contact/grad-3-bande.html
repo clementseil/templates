@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Contact · Grad 3 — Bande verticale épurée</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box}
+    body { font-family: system-ui; }
+    .topbar {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 9999;
+      background: #15151A; color: #FAFAF7;
+      padding: 10px 20px; font-size: 13px; font-weight: 500;
+      border-bottom: 1px solid #B89968;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .topbar strong { color: #B89968; }
+    .topbar a { color: #FAFAF7; opacity: 0.6; margin-left: auto; font-size: 11px; }
+    iframe { width: 100%; height: 100vh; border: 0; display: block; margin-top: 38px; }
+  </style>
+</head>
+<body>
+  <div class="topbar">
+    <strong>Grad 3 — Bande verticale épurée</strong>
+    <span>Beige doux en haut → blanc cassé → hint champagne en bas. Crée un "cadre" discret.</span>
+    <a href="grad-1-halo.html">← Grad 1</a>
+    <a href="grad-2-aurora.html">← Grad 2</a>
+  </div>
+  <iframe id="frame" src="../template-4-avis/index.html?nom=Dupont+Peinture&ville=Lyon&note=4.9&nb_avis=42#contact"></iframe>
+
+  <script>
+    document.getElementById('frame').addEventListener('load', function () {
+      const doc = this.contentDocument;
+      const style = doc.createElement('style');
+      style.textContent = `
+        .contact {
+          background:
+            linear-gradient(180deg,
+              var(--color-bg-alt) 0%,
+              var(--color-bg) 25%,
+              var(--color-bg) 65%,
+              rgba(184, 153, 104, 0.12) 100%) !important;
+        }
+      `;
+      doc.head.appendChild(style);
+    });
+  </script>
+</body>
+</html>

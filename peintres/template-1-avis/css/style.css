@@ -391,7 +391,7 @@ a:hover { color: var(--color-accent); }
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("../assets/img/hero-painter-paysage.jpg");
+  background-image: url("../assets/img/salon-maison-v2.jpg");
   background-size: cover;
   background-position: center center;
   z-index: 0;
@@ -796,9 +796,10 @@ a:hover { color: var(--color-accent); }
 
 .ba-slider {
   position: relative;
-  max-width: 720px;
+  max-width: 980px;
   margin-inline: auto;
-  aspect-ratio: 4 / 5;
+  /* Images source en 16:9 paysage — on adapte à chaque breakpoint */
+  aspect-ratio: 4 / 3;
   border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: var(--shadow-lg);
@@ -810,10 +811,10 @@ a:hover { color: var(--color-accent); }
   --ba-position: 50%;
 }
 @media (min-width: 768px) {
-  .ba-slider { aspect-ratio: 3 / 4; }
+  .ba-slider { aspect-ratio: 3 / 2; }
 }
 @media (min-width: 1024px) {
-  .ba-slider { aspect-ratio: 16 / 11; max-width: 980px; }
+  .ba-slider { aspect-ratio: 16 / 9; max-width: 1100px; }
 }
 
 .ba-img {

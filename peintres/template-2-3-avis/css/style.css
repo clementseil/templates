@@ -8,15 +8,15 @@
   --color-primary-light:  #2F5588;
 
   /* Neutres chauds — humanité, artisanat */
-  --color-bg:             #FAF7F1;
+  --color-bg:             #FAFAF7;
   --color-surface:        #FFFFFF;
-  --color-bg-alt:         #F1ECE0;
-  --color-border:         #E5DDD0;
+  --color-bg-alt:         #F1F0EC;
+  --color-border:         #E2E1DC;
 
   /* Textes */
   --color-text:           #1A1F26;
   --color-text-muted:     #5C6470;
-  --color-text-inverse:   #FAF7F1;
+  --color-text-inverse:   #FAFAF7;
 
   /* Accent vif — CTA, énergie */
   --color-accent:         #E8753A;
@@ -1004,6 +1004,7 @@ a:hover { color: var(--color-accent); }
 }
 
 .review {
+  position: relative;
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
@@ -1019,10 +1020,23 @@ a:hover { color: var(--color-accent); }
   box-shadow: var(--shadow-md);
 }
 
+.review-google {
+  position: absolute;
+  top: var(--sp-4);
+  right: var(--sp-4);
+  display: inline-flex;
+  line-height: 0;
+  opacity: 0.95;
+  pointer-events: none;
+}
+.review-google svg { display: block; }
+
 .review-stars {
   color: var(--color-star);
   letter-spacing: 2px;
   font-size: 1rem;
+  /* laisse de la place au logo G en haut à droite */
+  padding-right: calc(18px + var(--sp-2));
 }
 
 .review-text {

@@ -29,6 +29,10 @@
   <meta name="twitter:image" content="https://apercu.lesiteartisan.fr/og-image.jpg">
   <meta name="twitter:image:alt" content="{{nom_entreprise}} — Peintre artisan à {{ville}}">
 
+  <!-- ===== Favicons (statique + dynamique via favicon.js) ===== -->
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+
   <!-- ===== Fonts (preconnect + preload critique) ===== -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -760,6 +764,7 @@
 
     <!-- ===== Remplacement des {{var}} via query params (doit tourner avant tout autre script) ===== -->
   <script src="js/params.js" defer></script>
+  <script src="js/favicon.js" defer></script>
 
   <!-- ===== GSAP via CDN ===== -->
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>

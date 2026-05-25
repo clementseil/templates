@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="6" fill="#1F1F23"/>
+  <text x="16" y="23.5"
+        font-family="'DM Serif Display', 'Times New Roman', serif"
+        font-size="22"
+        font-style="italic"
+        fill="#B89968"
+        text-anchor="middle"
+        font-weight="400">L</text>
+</svg>

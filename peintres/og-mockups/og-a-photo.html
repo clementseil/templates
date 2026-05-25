@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>OG · A — Photo + scrim</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    html,body { width:1200px; height:630px; }
+    body {
+      width:1200px; height:630px;
+      position:relative; overflow:hidden;
+      font-family:'Inter',sans-serif;
+      background:
+        linear-gradient(110deg, rgba(15,25,45,0.92) 0%, rgba(15,25,45,0.55) 55%, rgba(15,25,45,0.20) 100%),
+        url("../template-4-avis/assets/img/maison-salon.avif") center/cover no-repeat;
+    }
+    .stage {
+      position:absolute; inset:0;
+      padding:64px 80px;
+      display:flex; flex-direction:column; justify-content:space-between;
+      color:#fff;
+    }
+    .top { display:flex; align-items:center; gap:14px; }
+    .dot { width:10px; height:10px; border-radius:50%; background:#E8753A; box-shadow:0 0 16px rgba(232,117,58,0.6); }
+    .eyebrow {
+      font-size:14px; font-weight:600; letter-spacing:3px; text-transform:uppercase;
+      color:#FAFAF7;
+    }
+    .center { max-width:760px; }
+    h1 {
+      font-family:'DM Serif Display',serif;
+      font-weight:400;
+      font-size:84px; line-height:1.02;
+      letter-spacing:-0.01em;
+      color:#FAFAF7;
+      margin-bottom:24px;
+    }
+    h1 .it { font-style:italic; color:#E8753A; }
+    p.sub {
+      font-size:24px; line-height:1.4; color:rgba(250,250,247,0.85);
+      max-width:680px;
+    }
+    .bottom { display:flex; justify-content:space-between; align-items:flex-end; }
+    .signals { display:flex; gap:32px; }
+    .signal {
+      display:flex; flex-direction:column; gap:2px;
+      font-size:14px; color:rgba(250,250,247,0.75);
+    }
+    .signal strong { font-size:18px; color:#fff; font-weight:600; letter-spacing:0.3px; }
+    .badge {
+      display:inline-flex; align-items:center; gap:10px;
+      padding:12px 22px;
+      border:1px solid rgba(255,255,255,0.25);
+      border-radius:999px;
+      background:rgba(255,255,255,0.08);
+      backdrop-filter:blur(8px);
+      font-size:15px; font-weight:600; letter-spacing:0.5px;
+    }
+    .arrow { transform:translateY(-1px); }
+  </style>
+</head>
+<body>
+  <div class="stage">
+    <div class="top">
+      <span class="dot"></span>
+      <span class="eyebrow">Peintre artisan · France</span>
+    </div>
+
+    <div class="center">
+      <h1>Votre projet peinture,<br><span class="it">entre les mains d'experts</span></h1>
+      <p class="sub">Peinture intérieure, extérieure et revêtements muraux. Devis gratuit sous 48h.</p>
+    </div>
+
+    <div class="bottom">
+      <div class="signals">
+        <div class="signal"><strong>★★★★★ 4,9/5</strong><span>Avis Google vérifiés</span></div>
+        <div class="signal"><strong>Garantie décennale</strong><span>Travaux assurés 10 ans</span></div>
+      </div>
+      <div class="badge">Devis gratuit <span class="arrow">→</span></div>
+    </div>
+  </div>
+</body>
+</html>

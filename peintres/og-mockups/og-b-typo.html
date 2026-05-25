@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>OG · B — Éditorial typographique</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    html,body { width:1200px; height:630px; }
+    body {
+      width:1200px; height:630px;
+      position:relative; overflow:hidden;
+      font-family:'Inter',sans-serif;
+      background: #FAFAF7;
+      color: #15151A;
+    }
+    /* Coin terracotta décoratif en bas à droite */
+    body::after {
+      content:"";
+      position:absolute;
+      width:520px; height:520px;
+      right:-200px; bottom:-200px;
+      border-radius:50%;
+      background: radial-gradient(circle, rgba(232,117,58,0.22), transparent 70%);
+      filter: blur(20px);
+    }
+    /* Bande verticale navy à gauche */
+    .strip {
+      position:absolute;
+      top:0; left:0; bottom:0; width:14px;
+      background: linear-gradient(180deg, #1E3A5F 0%, #142948 100%);
+    }
+    .stage {
+      position:absolute; inset:0;
+      padding:72px 90px 72px 110px;
+      display:flex; flex-direction:column; justify-content:space-between;
+    }
+    .top { display:flex; justify-content:space-between; align-items:center; }
+    .brand {
+      font-family:'DM Serif Display',serif;
+      font-size:28px;
+      color:#1E3A5F;
+      letter-spacing:-0.01em;
+    }
+    .eyebrow {
+      font-size:13px; font-weight:600; letter-spacing:3px; text-transform:uppercase;
+      color:#E8753A;
+    }
+
+    .center { max-width:920px; }
+    h1 {
+      font-family:'DM Serif Display',serif;
+      font-weight:400;
+      font-size:110px; line-height:0.98;
+      letter-spacing:-0.02em;
+      color:#1E3A5F;
+      margin-bottom:28px;
+    }
+    h1 .it { font-style:italic; color:#E8753A; }
+    p.sub {
+      font-size:23px; line-height:1.45; color:#5C6470;
+      max-width:740px;
+      font-weight:500;
+    }
+
+    /* Trait décoratif terracotta */
+    .accent-bar {
+      width:80px; height:4px;
+      background:#E8753A;
+      border-radius:99px;
+      margin-bottom:32px;
+    }
+
+    .bottom {
+      display:flex; gap:48px; align-items:center;
+      font-size:15px; color:#1A1F26; font-weight:500;
+      position:relative; z-index:2;
+    }
+    .pill {
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 18px;
+      border:1px solid #E2E1DC;
+      border-radius:999px;
+      background:#fff;
+    }
+    .pill .dot { width:8px; height:8px; border-radius:50%; background:#2D7A4F; }
+    .pill .stars { color:#D4A24C; letter-spacing:1px; }
+  </style>
+</head>
+<body>
+  <span class="strip"></span>
+  <div class="stage">
+    <div class="top">
+      <span class="brand">LeSiteArtisan</span>
+      <span class="eyebrow">Peintre artisan · France</span>
+    </div>
+
+    <div class="center">
+      <div class="accent-bar"></div>
+      <h1>Peinture<br>d'<span class="it">exception</span>.</h1>
+      <p class="sub">Intérieur, extérieur, revêtements muraux. Devis gratuit sous 48h, garantie décennale, travaux soignés.</p>
+    </div>
+
+    <div class="bottom">
+      <span class="pill"><span class="stars">★★★★★</span> 4,9/5 sur Google</span>
+      <span class="pill"><span class="dot"></span> Disponible cette semaine</span>
+    </div>
+  </div>
+</body>
+</html>

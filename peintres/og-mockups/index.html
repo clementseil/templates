@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>OG mockups — Comparateur</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing:border-box; margin:0; padding:0; }
+    body { font-family:'Inter',sans-serif; background:#1A1F26; color:#fff; padding:48px; }
+    h1 { font-size:24px; margin-bottom:8px; }
+    .lead { color:#9CA3AF; font-size:14px; margin-bottom:40px; }
+    .mockup { margin-bottom:64px; }
+    .mockup h2 {
+      font-size:14px; font-weight:700; letter-spacing:3px; text-transform:uppercase;
+      color:#E8753A; margin-bottom:4px;
+    }
+    .mockup p { color:#9CA3AF; font-size:13px; margin-bottom:18px; }
+    .frame {
+      width:1200px; height:630px;
+      border:1px solid #374151;
+      box-shadow:0 8px 40px rgba(0,0,0,0.5);
+      overflow:hidden; border-radius:8px;
+      transform-origin: top left;
+    }
+    .frame iframe { width:1200px; height:630px; border:0; display:block; }
+    /* Affichage à taille réelle si fenêtre large, sinon mis à l'échelle */
+    @media (max-width: 1400px) {
+      .frame { transform: scale(0.9); margin-bottom:-63px; }
+    }
+    @media (max-width: 1280px) {
+      .frame { transform: scale(0.78); margin-bottom:-138px; }
+    }
+  </style>
+</head>
+<body>
+  <h1>OG image — 3 propositions</h1>
+  <p class="lead">Format réel 1200×630 px (taille standard Facebook / WhatsApp / LinkedIn / iMessage)</p>
+
+  <section class="mockup">
+    <h2>A — Photo + scrim</h2>
+    <p>Réutilise la photo "maison-salon" en arrière-plan avec voile sombre dégradé. Tagline + signaux confiance + CTA. Premium, immersif.</p>
+    <div class="frame"><iframe src="og-a-photo.html"></iframe></div>
+  </section>
+
+  <section class="mockup">
+    <h2>B — Éditorial typographique</h2>
+    <p>Fond blanc cassé, énorme titre serif "Peinture d'exception", accent terracotta. Très lisible même en vignette WhatsApp. Esprit magazine / boutique de luxe.</p>
+    <div class="frame"><iframe src="og-b-typo.html"></iframe></div>
+  </section>
+
+  <section class="mockup">
+    <h2>C — Split avant/après</h2>
+    <p>Photos avant et après côte à côte avec séparateur central. Bandeau bas avec titre + note Google + CTA. Storytelling visuel immédiat, très différenciant.</p>
+    <div class="frame"><iframe src="og-c-split.html"></iframe></div>
+  </section>
+</body>
+</html>

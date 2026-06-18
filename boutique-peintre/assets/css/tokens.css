@@ -1,0 +1,36 @@
+/* Atelier Camille Véran — design tokens (portable)
+ * Theme: Atelier · light · italic-serif · warm terracotta
+ * Importez ce fichier avant style.css pour réutiliser le système ailleurs. */
+:root {
+  /* Couleurs */
+  --color-paper:    oklch(97.5% 0.012 78);
+  --color-paper-2:  oklch(94.5% 0.014 75);
+  --color-paper-3:  oklch(90%   0.018 72);
+  --color-ink:      oklch(23%   0.018 60);
+  --color-ink-soft: oklch(41%   0.016 60);
+  --color-muted:    oklch(56%   0.012 60);
+  --color-line:     oklch(86%   0.016 72);
+  --color-accent:   oklch(56%   0.142 44);
+  --color-accent-2: oklch(47%   0.130 40);
+  --color-focus:    oklch(56%   0.142 44);
+  --color-good:     oklch(52%   0.10 150);
+
+  /* Typographie */
+  --font-display: "DM Serif Display", Georgia, serif;
+  --font-body:    "Inter", system-ui, sans-serif;
+  --text-xs: 0.78rem; --text-sm: 0.875rem; --text-base: 1rem; --text-lg: 1.18rem;
+  --text-xl: 1.5rem; --text-2xl: 2rem; --text-3xl: 2.75rem;
+  --text-display-s: clamp(2.6rem, 6vw, 4.2rem);
+  --text-display:   clamp(3.4rem, 11vw, 8rem);
+
+  /* Espacement (4pt) */
+  --space-2xs: 0.25rem; --space-xs: 0.5rem; --space-sm: 0.75rem; --space-md: 1rem;
+  --space-lg: 1.5rem; --space-xl: 2.5rem; --space-2xl: 4rem; --space-3xl: 6.5rem;
+
+  /* Forme & motion */
+  --radius: 3px; --radius-lg: 6px;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in:  cubic-bezier(0.4, 0, 1, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur: 0.34s;
+}

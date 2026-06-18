@@ -396,7 +396,7 @@ a:hover { color: var(--color-accent); }
   content: "";
   position: absolute;
   inset: 0;
-  background-image: url("../assets/img/salon-maison-v2.jpg");
+  background-image: url("../img/salon-maison-v2.jpg");
   background-size: cover;
   background-position: center center;
   z-index: 0;

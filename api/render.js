@@ -8,6 +8,9 @@
  *
  * Variables d'env nécessaires (à configurer dans Vercel Project Settings) :
  *   - NOTION_TOKEN          : token d'intégration interne Notion (secret_... ou ntn_...)
+ *                             ⚠️ Pour le tracking des visites, l'intégration doit avoir
+ *                             la capacité « Mettre à jour le contenu » (Notion →
+ *                             Paramètres → Connexions → gérer l'intégration).
  *   - NOTION_DB_ID          : ID de la base "peintres SANS site" (interrogée en priorité)
  *   - NOTION_DB_ID_AVEC_SITE : (optionnel) ID de la base "peintres AVEC site"
  *                              Si défini, render.js cherche aussi dans cette DB
@@ -25,6 +28,11 @@ const HOST = 'https://apercu.lesiteartisan.fr';
 
 // Slugs réservés qu'on n'essaie même pas de chercher dans Notion
 const RESERVED_SLUGS = new Set(['api', 'peintres', '404', 'favicon.ico', 'robots.txt', 'sitemap.xml']);
+
+// User-agents de bots et d'aperçus de liens (WhatsApp, Facebook, etc.) : on les
+// laisse voir la page, mais on ne compte PAS leur passage comme une visite du
+// prospect — sinon chaque envoi de message créerait une fausse visite.
+const BOT_UA = /bot|crawl|spider|preview|whatsapp|facebookexternalhit|telegram|slack|twitter|linkedin|discord|skype|pinterest|embed|curl|wget|python-requests|headless/i;
 
 /* ──────────────────────────────────────────────────────────────────────────
  * 1. Choix du template selon le nombre d'avis
@@ -169,7 +177,31 @@ module.exports = async (req, res) => {
     // 6.b. Extraction des données
     const data = buildDataFromNotionPage(result.results[0], slug);
 
-    // 6.b.bis. Mode debug : ?debug=1 → renvoie le JSON des données extraites
+    // 6.b.bis. Tracking de visite → écrit dans la ligne Notion du prospect :
+    //   - "Template vu le"   : date/heure de la dernière visite
+    //   - "Visites maquette" : compteur incrémenté à chaque visite
+    // Ignoré si : bot/aperçu de lien (BOT_UA), ?notrack=1 (tes propres
+    // vérifications) ou ?debug=1. N'empêche jamais le rendu en cas d'échec.
+    const ua = String(req.headers['user-agent'] || '');
+    if (ua && !BOT_UA.test(ua) && req.query.notrack !== '1' && req.query.debug !== '1') {
+      const page = result.results[0];
+      const trackProps = {};
+      if (page.properties['Template vu le']) {
+        trackProps['Template vu le'] = { date: { start: new Date().toISOString() } };
+      }
+      if (page.properties['Visites maquette']) {
+        trackProps['Visites maquette'] = { number: (page.properties['Visites maquette'].number || 0) + 1 };
+      }
+      if (Object.keys(trackProps).length > 0) {
+        try {
+          await notion.pages.update({ page_id: page.id, properties: trackProps });
+        } catch (trackErr) {
+          console.error('[render.js] Tracking visite échoué (non bloquant) :', trackErr.message);
+        }
+      }
+    }
+
+    // 6.b.ter. Mode debug : ?debug=1 → renvoie le JSON des données extraites
     // au lieu du HTML. Très utile pour vérifier ce que Notion renvoie.
     if (req.query.debug === '1') {
       res.setHeader('Content-Type', 'application/json; charset=utf-8');
@@ -207,9 +239,11 @@ module.exports = async (req, res) => {
     // 6.e. Réécriture des chemins d'assets vers /peintres/template-X-avis/...
     html = rewriteAssetPaths(html, templateDir);
 
-    // 6.f. Headers : type + cache edge (1h, revalidate 24h en arrière-plan)
+    // 6.f. Headers : type + PAS de cache edge — chaque visite doit atteindre la
+    // fonction pour être comptée par le tracking. Le trafic prospection est très
+    // faible, et bonus : les modifs Notion apparaissent immédiatement sur la maquette.
     res.setHeader('Content-Type', 'text/html; charset=utf-8');
-    res.setHeader('Cache-Control', 's-maxage=3600, stale-while-revalidate=86400');
+    res.setHeader('Cache-Control', 'no-store');
 
     // 6.g. Header debug (visible dans devtools Network) pour vérifier ce qui s'est passé
     res.setHeader('X-Render-Template', templateDir);

@@ -114,6 +114,8 @@ Deux databases :
 
 **Variables d'environnement** (Settings → Environment Variables) :
 - `NOTION_TOKEN` : token de l'intégration "Vercel apercu" (commence par `secret_` ou `ntn_`)
+  ⚠️ L'intégration doit avoir la capacité **« Mettre à jour le contenu »** (Notion →
+  Paramètres → Connexions) pour que le tracking des visites fonctionne.
 - `NOTION_DB_ID` : ID 32 caractères de la DB Notion SANS SITE
 
 ⚠️ **Changement d'env var = redéploiement obligatoire** (Deployments → "..." → Redeploy)
@@ -133,6 +135,15 @@ Chaque template = un `index.html` + son `css/` + son `assets/` + son `js/`.
 
 **Mode debug** : ajouter `?debug=1` à n'importe quelle URL renvoie le JSON des données extraites de Notion (utile pour vérifier ce que `render.js` voit).
 Exemple : `apercu.lesiteartisan.fr/tr-peinture?debug=1`
+
+**Tracking des visites** : à chaque visite d'une maquette, `render.js` écrit dans la
+ligne Notion du prospect : `Template vu le` (date/heure de la dernière visite) et
+`Visites maquette` (compteur). Prospect qui a vu sa maquette = prospect chaud → rappel prioritaire.
+- Les bots et aperçus de liens (WhatsApp, Facebook…) sont filtrés par user-agent : l'envoi d'un message ne crée pas de fausse visite.
+- `?notrack=1` = visite non comptée (pour tes propres vérifications).
+- `?debug=1` ne compte pas non plus.
+- Nécessite : colonnes `Template vu le` (date) et `Visites maquette` (nombre) dans la DB + capacité d'écriture sur l'intégration (voir env vars). Si les colonnes n'existent pas, le tracking est ignoré sans casser le rendu.
+- Le cache edge a été désactivé (`Cache-Control: no-store`) pour que chaque visite atteigne la fonction.
 
 ### Cloudflare
 

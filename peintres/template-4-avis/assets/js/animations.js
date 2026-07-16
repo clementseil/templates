@@ -5,7 +5,7 @@
  *   1. SplitText sur le H1 hero (lettres avec stagger)
  *   2. Fade-up séquentiel des éléments du hero (eyebrow → signals)
  *   3. ScrollTrigger reveal pour chaque section et leurs sous-éléments
- *   4. Stagger sur services, galerie, étapes, avis, FAQ, pictos confiance
+ *   4. Stagger sur services, galerie, avis, pictos confiance
  *   5. Pulse subtil sur le CTA principal du hero
  *   6. Parallax léger sur l'image hero au scroll
  *   7. Compteurs animés (note Google + nombre d'avis) qui comptent à l'arrivée dans le viewport
@@ -106,11 +106,9 @@
       '.trust-bar',
       '#services .section-head',
       '#realisations .section-head',
-      '#process .section-head',
       '#avis .section-head',
       '#zone .zone-content',
       '#zone .zone-map',
-      '#faq .section-head',
       '#contact .contact-intro',
       '#contact .contact-form',
       '.site-footer',
@@ -125,6 +123,12 @@
         duration: 0.9,
         ease: 'power2.out',
         scrollTrigger: { trigger: el, start: 'top 80%', toggleActions: 'play none none none' },
+        // immediateRender:false -> l'arrivée est lue au démarrage réel du tween,
+        // pas à la création. Sinon un refresh ScrollTrigger fige le décalage.
+        immediateRender: false,
+        // clearProps -> GSAP retire son transform inline en fin d'animation,
+        // ce qui rend le :hover CSS à nouveau opérant.
+        clearProps: 'transform',
       });
     });
 
@@ -139,6 +143,12 @@
         ease: 'power2.out',
         stagger: 0.1,
         scrollTrigger: { trigger: '.services-grid', start: 'top 80%' },
+        // immediateRender:false -> l'arrivée est lue au démarrage réel du tween,
+        // pas à la création. Sinon un refresh ScrollTrigger fige le décalage.
+        immediateRender: false,
+        // clearProps -> GSAP retire son transform inline en fin d'animation,
+        // ce qui rend le :hover CSS à nouveau opérant.
+        clearProps: 'transform',
       });
     }
 
@@ -154,32 +164,12 @@
         ease: 'power2.out',
         stagger: 0.1,
         scrollTrigger: { trigger: '.gallery', start: 'top 80%' },
-      });
-    }
-
-
-    /* ─── Stagger sur les étapes du process ─── */
-    const steps = gsap.utils.toArray('.step');
-    if (steps.length) {
-      gsap.from(steps, {
-        opacity: 0,
-        y: 30,
-        duration: 0.7,
-        ease: 'power2.out',
-        stagger: 0.1,
-        scrollTrigger: { trigger: '.steps', start: 'top 80%' },
-      });
-    }
-    // Pour les step-number, animation distincte plus marquée
-    const stepNumbers = gsap.utils.toArray('.step-number');
-    if (stepNumbers.length) {
-      gsap.from(stepNumbers, {
-        opacity: 0,
-        scale: 0.4,
-        duration: 0.9,
-        ease: 'back.out(1.7)',
-        stagger: 0.12,
-        scrollTrigger: { trigger: '.steps', start: 'top 75%' },
+        // immediateRender:false -> l'arrivée est lue au démarrage réel du tween,
+        // pas à la création. Sinon un refresh ScrollTrigger fige le décalage.
+        immediateRender: false,
+        // clearProps -> GSAP retire son transform inline en fin d'animation,
+        // ce qui rend le :hover CSS à nouveau opérant.
+        clearProps: 'transform',
       });
     }
 
@@ -194,6 +184,12 @@
         ease: 'power2.out',
         stagger: 0.1,
         scrollTrigger: { trigger: '.reviews-grid', start: 'top 80%' },
+        // immediateRender:false -> l'arrivée est lue au démarrage réel du tween,
+        // pas à la création. Sinon un refresh ScrollTrigger fige le décalage.
+        immediateRender: false,
+        // clearProps -> GSAP retire son transform inline en fin d'animation,
+        // ce qui rend le :hover CSS à nouveau opérant.
+        clearProps: 'transform',
       });
     }
 
@@ -221,22 +217,14 @@
         ease: 'back.out(2)',
         stagger: 0.08,
         scrollTrigger: { trigger: starsBlock.closest('.review'), start: 'top 85%' },
+        // immediateRender:false -> l'arrivée est lue au démarrage réel du tween,
+        // pas à la création. Sinon un refresh ScrollTrigger fige le décalage.
+        immediateRender: false,
+        // clearProps -> GSAP retire son transform inline en fin d'animation,
+        // ce qui rend le :hover CSS à nouveau opérant.
+        clearProps: 'transform',
       });
     });
-
-
-    /* ─── Stagger sur les items FAQ ─── */
-    const faqItems = gsap.utils.toArray('.faq-item');
-    if (faqItems.length) {
-      gsap.from(faqItems, {
-        opacity: 0,
-        y: 20,
-        duration: 0.6,
-        ease: 'power2.out',
-        stagger: 0.06,
-        scrollTrigger: { trigger: '.faq-list', start: 'top 85%' },
-      });
-    }
 
 
     /* ─── Stagger sur les pictos du bandeau confiance ─── */
@@ -249,6 +237,12 @@
         ease: 'power2.out',
         stagger: 0.1,
         scrollTrigger: { trigger: '.trust-grid', start: 'top 85%' },
+        // immediateRender:false -> l'arrivée est lue au démarrage réel du tween,
+        // pas à la création. Sinon un refresh ScrollTrigger fige le décalage.
+        immediateRender: false,
+        // clearProps -> GSAP retire son transform inline en fin d'animation,
+        // ce qui rend le :hover CSS à nouveau opérant.
+        clearProps: 'transform',
       });
     }
 

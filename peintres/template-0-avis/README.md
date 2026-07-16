@@ -106,11 +106,10 @@ Tout le design system est dans **`css/style.css` lignes 1-90** sous `:root { …
 | Trust bar — 4 garanties | `index.html` lignes ~155-200 | Titre + sous-titre par item |
 | Services — 4 cards | `index.html` lignes ~225-310 | Texte + 3 sous-services par card |
 | Réalisations — galerie | `index.html` lignes ~325-360 | Images Unsplash à remplacer par les vraies photos du peintre |
-| Process — 4 étapes | `index.html` lignes ~375-420 | Numérotation 01-04 auto via CSS |
 | Avis — variables `{{avis_X}}` | `index.html` lignes ~445-490 | Reçus depuis Notion |
 | Zone — liste de communes | `index.html` lignes ~510-530 | 7 communes + ville principale = 8 |
 | Zone — carte | `index.html` ligne ~540 | Iframe Google Maps, URL générée à partir de `{{ville}}` |
-| FAQ — 6 questions | `index.html` lignes ~555-625 | `<details>` natifs, accessibles |
+| Encart maquette | `index.html` — section `#maquette` | Bloc LeSiteArtisan, à retirer sur un site livré |
 | Contact — coordonnées | `index.html` lignes ~640-680 | Tél, email, adresse, horaires |
 | Footer — copyright | `index.html` ligne ~745 | Année auto-mise-à-jour par JS |
 
@@ -199,7 +198,7 @@ Ce template est la version "4 avis +". Les trois autres templates (à créer) :
 | `site_1avis/` (1 avis) | Avis transformé en pull-quote unique grande dimension |
 | `site_0avis/` (0 avis) | Section avis retirée, remplacée par "Engagements" ou "Pourquoi nous choisir" |
 
-Le reste de la structure (header, hero, services, réalisations, process, zone, FAQ, contact, footer) reste identique : seule la section témoignages varie. Cela facilite la maintenance.
+Le reste de la structure (header, hero, services, réalisations, zone, contact, encart maquette, footer) reste identique : seule la section témoignages varie. Cela facilite la maintenance.
 
 ---
 

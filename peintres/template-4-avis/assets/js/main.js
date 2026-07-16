@@ -258,3 +258,52 @@
     });
   }
 })();
+
+
+/* ═══════════════════════════════════════════════════════════
+   HERO — lecture de la vidéo décorative
+   ═══════════════════════════════════════════════════════════
+   Règles :
+   - preload="none" dans le HTML : rien n'est téléchargé tant que la
+     vidéo n'est pas à l'écran. Le poster porte le LCP.
+   - prefers-reduced-motion : on ne charge même pas la vidéo, le poster
+     suffit.
+   - Connexion lente ou mode économie de données : idem, on s'abstient.
+   - Hors viewport : pause, pour ne pas décoder dans le vide.
+   - play() peut être refusé (iOS éco d'énergie) : on ne fait rien,
+     le poster reste affiché. Aucun état cassé.
+*/
+(() => {
+  'use strict';
+
+  const video = document.querySelector('video[data-hero-video]');
+  if (!video) return;
+
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+  const conn = navigator.connection;
+  if (conn && (conn.saveData || /^([23]g|slow-2g)$/.test(conn.effectiveType || ''))) return;
+
+  video.muted = true;
+
+  const start = () => {
+    if (video.preload === 'none') {
+      video.preload = 'auto';
+      video.load();
+    }
+    const p = video.play();
+    if (p) p.catch(() => {});
+  };
+
+  if (!('IntersectionObserver' in window)) {
+    start();
+    return;
+  }
+
+  new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) start();
+      else video.pause();
+    });
+  }, { threshold: 0.2 }).observe(video);
+})();

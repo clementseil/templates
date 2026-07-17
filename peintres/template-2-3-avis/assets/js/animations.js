@@ -123,6 +123,12 @@
         duration: 0.9,
         ease: 'power2.out',
         scrollTrigger: { trigger: el, start: 'top 80%', toggleActions: 'play none none none' },
+        // immediateRender:false -> l'arrivée est lue au démarrage réel du tween,
+        // pas à la création. Sinon un refresh ScrollTrigger fige le décalage.
+        immediateRender: false,
+        // clearProps -> GSAP retire son transform inline en fin d'animation,
+        // ce qui rend le :hover CSS à nouveau opérant.
+        clearProps: 'transform',
       });
     });
 
@@ -137,6 +143,12 @@
         ease: 'power2.out',
         stagger: 0.1,
         scrollTrigger: { trigger: '.services-grid', start: 'top 80%' },
+        // immediateRender:false -> l'arrivée est lue au démarrage réel du tween,
+        // pas à la création. Sinon un refresh ScrollTrigger fige le décalage.
+        immediateRender: false,
+        // clearProps -> GSAP retire son transform inline en fin d'animation,
+        // ce qui rend le :hover CSS à nouveau opérant.
+        clearProps: 'transform',
       });
     }
 
@@ -152,6 +164,12 @@
         ease: 'power2.out',
         stagger: 0.1,
         scrollTrigger: { trigger: '.gallery', start: 'top 80%' },
+        // immediateRender:false -> l'arrivée est lue au démarrage réel du tween,
+        // pas à la création. Sinon un refresh ScrollTrigger fige le décalage.
+        immediateRender: false,
+        // clearProps -> GSAP retire son transform inline en fin d'animation,
+        // ce qui rend le :hover CSS à nouveau opérant.
+        clearProps: 'transform',
       });
     }
 
@@ -166,6 +184,12 @@
         ease: 'power2.out',
         stagger: 0.1,
         scrollTrigger: { trigger: '.reviews-grid', start: 'top 80%' },
+        // immediateRender:false -> l'arrivée est lue au démarrage réel du tween,
+        // pas à la création. Sinon un refresh ScrollTrigger fige le décalage.
+        immediateRender: false,
+        // clearProps -> GSAP retire son transform inline en fin d'animation,
+        // ce qui rend le :hover CSS à nouveau opérant.
+        clearProps: 'transform',
       });
     }
 
@@ -193,6 +217,12 @@
         ease: 'back.out(2)',
         stagger: 0.08,
         scrollTrigger: { trigger: starsBlock.closest('.review'), start: 'top 85%' },
+        // immediateRender:false -> l'arrivée est lue au démarrage réel du tween,
+        // pas à la création. Sinon un refresh ScrollTrigger fige le décalage.
+        immediateRender: false,
+        // clearProps -> GSAP retire son transform inline en fin d'animation,
+        // ce qui rend le :hover CSS à nouveau opérant.
+        clearProps: 'transform',
       });
     });
 
@@ -207,6 +237,12 @@
         ease: 'power2.out',
         stagger: 0.1,
         scrollTrigger: { trigger: '.trust-grid', start: 'top 85%' },
+        // immediateRender:false -> l'arrivée est lue au démarrage réel du tween,
+        // pas à la création. Sinon un refresh ScrollTrigger fige le décalage.
+        immediateRender: false,
+        // clearProps -> GSAP retire son transform inline en fin d'animation,
+        // ce qui rend le :hover CSS à nouveau opérant.
+        clearProps: 'transform',
       });
     }
 

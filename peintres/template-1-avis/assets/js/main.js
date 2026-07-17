@@ -258,3 +258,88 @@
     });
   }
 })();
+
+
+/* ═══════════════════════════════════════════════════════════
+   HERO — carrousel de chantiers (défilement manuel)
+   ═══════════════════════════════════════════════════════════
+   Règles :
+   - Aucun défilement automatique. Rien ne bouge sans une action du
+     visiteur : swipe, flèche ou puce.
+   - Le scroll natif (scroll-snap, CSS) fait tout le travail de geste :
+     swipe tactile et trackpad marchent sans une ligne de JS. Ici on ne
+     fait que le piloter depuis les flèches/puces, puis refléter la
+     position réelle du scroll. Le scroll reste donc la source de vérité,
+     et les puces ne peuvent pas mentir sur la photo affichée.
+   - Les contrôles ne sont révélés (.is-ready) qu'une fois le JS en
+     place : sans JS, pas de bouton mort, le swipe suffit.
+   - Les flèches bouclent dans les deux sens : sur 4 photos, un
+     cul-de-sac n'apporte rien.
+*/
+(() => {
+  'use strict';
+
+  const root = document.querySelector('[data-hero-carousel]');
+  if (!root) return;
+
+  const track  = root.querySelector('[data-hc-track]');
+  const prev   = root.querySelector('[data-hc-prev]');
+  const next   = root.querySelector('[data-hc-next]');
+  const dotsEl = root.querySelector('[data-hc-dots]');
+  const slides = Array.from(root.querySelectorAll('.hero-slide'));
+  if (!track || !prev || !next || !dotsEl || slides.length < 2) return;
+
+  const motionOK = !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let current = 0;
+
+  root.classList.add('is-ready');
+
+  /* ─── Puces : construites en JS, donc absentes si le JS ne tourne pas ─── */
+  const dots = slides.map((_, i) => {
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'hero-carousel-dot';
+    b.setAttribute('aria-label', `Photo ${i + 1} sur ${slides.length}`);
+    b.addEventListener('click', () => goTo(i));
+    dotsEl.appendChild(b);
+    return b;
+  });
+
+  function render() {
+    dots.forEach((d, i) => {
+      const on = i === current;
+      d.classList.toggle('is-current', on);
+      d.setAttribute('aria-current', on ? 'true' : 'false');
+    });
+  }
+
+  function goTo(i) {
+    current = (i + slides.length) % slides.length;
+    track.scrollTo({
+      left: current * track.clientWidth,
+      behavior: motionOK ? 'smooth' : 'auto',
+    });
+    render();
+  }
+
+  prev.addEventListener('click', () => goTo(current - 1));
+  next.addEventListener('click', () => goTo(current + 1));
+
+  /* ─── Le scroll fait foi : un swipe met les puces à jour tout seul ─── */
+  let ticking = false;
+  track.addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      ticking = false;
+      if (!track.clientWidth) return;
+      const i = Math.round(track.scrollLeft / track.clientWidth);
+      if (i !== current && i >= 0 && i < slides.length) {
+        current = i;
+        render();
+      }
+    });
+  }, { passive: true });
+
+  render();
+})();

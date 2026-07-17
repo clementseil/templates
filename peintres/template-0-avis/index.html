@@ -4,8 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Maquette de prospection : jamais indexée (données réelles du prospect). -->
+  <meta name="robots" content="noindex, nofollow">
+
   <!-- ===== SEO ===== -->
-  <title>{{nom_entreprise}} — Peintre artisan à {{ville}} | Devis gratuit</title>
+  <title>{{nom_entreprise}} — Peintre artisan à {{ville}}</title>
   <meta name="description" content="{{nom_entreprise}}, peintre artisan à {{ville}} et ses alentours. Peinture intérieure, extérieure et revêtements muraux. Devis gratuit sous 48h, garantie décennale, travaux soignés.">
   <link rel="canonical" href="{{url_site}}">
 
@@ -109,15 +112,15 @@
 
           <h1 class="hero-title">
             Votre projet peinture,
-            <span class="hero-title-accent">entre les mains d'experts</span>
+            <span class="hero-title-accent">entre les mains d'experts.</span>
           </h1>
 
           <p class="hero-sub">
-            Peinture intérieure, extérieure et revêtements muraux à {{ville}} et ses alentours. Devis gratuit sous 48h, garantie décennale, travaux soignés.
+            Peinture intérieure, extérieure et revêtements muraux à {{ville}} et ses alentours.
           </p>
 
           <div class="hero-actions">
-            <a href="#contact" class="btn btn-primary">Demander un devis gratuit</a>
+            <a href="#contact" class="btn btn-primary">Demander un devis</a>
             <a href="tel:{{numéro_de_téléphone}}" class="btn btn-ghost">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                 <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
@@ -132,6 +135,52 @@
           </div>
         </div>
 
+        <!-- Carrousel de chantiers — défilement MANUEL uniquement.
+             Le scroll-snap natif porte le swipe tactile et le trackpad ;
+             les flèches et les puces ne font que piloter ce même scroll.
+             Aucun autoplay : rien ne bouge tant que le visiteur ne l'a pas
+             décidé. Les flèches n'apparaissent qu'une fois le JS en place
+             (.is-ready), sinon le bloc reste un simple scroller horizontal
+             — jamais de bouton mort. -->
+        <div class="hero-media">
+          <div class="hero-carousel" data-hero-carousel
+               role="group" aria-roledescription="carrousel"
+               aria-label="Photos de chantiers réalisés">
+
+            <ul class="hero-carousel-track" data-hc-track>
+              <li class="hero-slide">
+                <img src="assets/img/salon-maison-v2.jpg"
+                     alt="Séjour lumineux repeint en blanc mat, larges baies vitrées et plafond sans reprise"
+                     width="1672" height="941" fetchpriority="high" decoding="async">
+              </li>
+              <li class="hero-slide">
+                <img src="assets/img/salon1.avif"
+                     alt="Séjour ouvert avec mur d'accent bleu canard, poutres apparentes peintes en noir et plafond blanc"
+                     width="1740" height="1160" loading="lazy" decoding="async">
+              </li>
+              <li class="hero-slide">
+                <img src="assets/img/salon2.avif"
+                     alt="Salon avec mur d'accent vert sauge, buffet en cannage et miroir rond"
+                     width="900" height="900" loading="lazy" decoding="async">
+              </li>
+            </ul>
+
+            <button class="hero-carousel-arrow hero-carousel-arrow--prev" type="button"
+                    data-hc-prev aria-label="Photo précédente">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M15 18l-6-6 6-6"/>
+              </svg>
+            </button>
+            <button class="hero-carousel-arrow hero-carousel-arrow--next" type="button"
+                    data-hc-next aria-label="Photo suivante">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 18l6-6-6-6"/>
+              </svg>
+            </button>
+
+            <div class="hero-carousel-dots" data-hc-dots></div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -331,17 +380,17 @@
         >
           <img
             class="ba-img ba-img--after"
-            src="assets/img/apres.jpg"
+            src="assets/img/apres-2.jpg"
             alt="Pièce après les travaux de peinture"
             loading="lazy"
-            width="1920" height="1080"
+            width="1200" height="900"
           >
           <img
             class="ba-img ba-img--before"
-            src="assets/img/avant.jpg"
+            src="assets/img/avant-2.jpg"
             alt="Pièce avant les travaux de peinture"
             loading="lazy"
-            width="1920" height="1080"
+            width="1200" height="900"
           >
 
           <span class="ba-label ba-label--before" aria-hidden="true">Avant</span>

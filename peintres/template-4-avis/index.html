@@ -4,8 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <!-- Maquette de prospection : jamais indexée (données réelles du prospect). -->
+  <meta name="robots" content="noindex, nofollow">
+
   <!-- ===== SEO ===== -->
-  <title>{{nom_entreprise}} — Peintre artisan à {{ville}} | Devis gratuit</title>
+  <title>{{nom_entreprise}} — Peintre artisan à {{ville}}</title>
   <meta name="description" content="{{nom_entreprise}}, peintre artisan à {{ville}} et ses alentours. Peinture intérieure, extérieure et revêtements muraux. Devis gratuit sous 48h, garantie décennale, travaux soignés.">
   <link rel="canonical" href="{{url_site}}">
 
@@ -38,8 +41,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- ===== Preload hero image (LCP) ===== -->
-  <link rel="preload" as="image" href="assets/video/chantier-poster.jpg">
+  <!-- ===== Preload hero image (LCP) — 1re photo du carrousel ===== -->
+  <link rel="preload" as="image" href="assets/img/salon-maison-v2.jpg">
 
   <!-- ===== CSS ===== -->
   <link rel="stylesheet" href="assets/css/reset.css">
@@ -143,20 +146,51 @@
           </div>
         </div>
 
-        <!-- Vidéo décorative : muette, en boucle, sans contrôles.
-             aria-hidden car elle n'apporte aucune information textuelle.
-             Le poster porte le LCP : si la vidéo ne démarre pas
-             (iOS éco d'énergie, data saver, reduced-motion), l'image reste. -->
+        <!-- Carrousel de chantiers — défilement MANUEL uniquement.
+             Le scroll-snap natif porte le swipe tactile et le trackpad ;
+             les flèches et les puces ne font que piloter ce même scroll.
+             Aucun autoplay : rien ne bouge tant que le visiteur ne l'a pas
+             décidé. Les flèches n'apparaissent qu'une fois le JS en place
+             (.is-ready), sinon le bloc reste un simple scroller horizontal
+             — jamais de bouton mort. -->
         <div class="hero-media">
-          <video
-            poster="assets/video/chantier-poster.jpg"
-            muted loop playsinline preload="none"
-            aria-hidden="true" tabindex="-1"
-            data-hero-video
-            width="1000" height="750">
-            <source src="assets/video/chantier.webm" type="video/webm">
-            <source src="assets/video/chantier.mp4" type="video/mp4">
-          </video>
+          <div class="hero-carousel" data-hero-carousel
+               role="group" aria-roledescription="carrousel"
+               aria-label="Photos de chantiers réalisés">
+
+            <ul class="hero-carousel-track" data-hc-track>
+              <li class="hero-slide">
+                <img src="assets/img/salon-maison-v2.jpg"
+                     alt="Séjour lumineux repeint en blanc mat, larges baies vitrées et plafond sans reprise"
+                     width="1672" height="941" fetchpriority="high" decoding="async">
+              </li>
+              <li class="hero-slide">
+                <img src="assets/img/salon1.avif"
+                     alt="Séjour ouvert avec mur d'accent bleu canard, poutres apparentes peintes en noir et plafond blanc"
+                     width="1740" height="1160" loading="lazy" decoding="async">
+              </li>
+              <li class="hero-slide">
+                <img src="assets/img/salon2.avif"
+                     alt="Salon avec mur d'accent vert sauge, buffet en cannage et miroir rond"
+                     width="900" height="900" loading="lazy" decoding="async">
+              </li>
+            </ul>
+
+            <button class="hero-carousel-arrow hero-carousel-arrow--prev" type="button"
+                    data-hc-prev aria-label="Photo précédente">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M15 18l-6-6 6-6"/>
+              </svg>
+            </button>
+            <button class="hero-carousel-arrow hero-carousel-arrow--next" type="button"
+                    data-hc-next aria-label="Photo suivante">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M9 18l6-6-6-6"/>
+              </svg>
+            </button>
+
+            <div class="hero-carousel-dots" data-hc-dots></div>
+          </div>
         </div>
       </div>
     </section>

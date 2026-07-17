@@ -2,30 +2,36 @@
    DESIGN SYSTEM — variables CSS
    ═══════════════════════════════════════════════════════════ */
 :root {
-  /* Bleus — sérieux, technique, métier */
-  --color-primary:        #1F1F23;
-  --color-primary-dark:   #0F0F12;
-  --color-primary-light:  #3A3A42;
+  /* Noirs — CTA, titres, aplats */
+  --color-primary:        #1A1A1A;
+  --color-primary-dark:   #0D0D0D;
+  --color-primary-light:  #3A3A3A;
 
-  /* Neutres chauds — humanité, artisanat */
-  --color-bg:             #FAFAF7;
+  /* Neutres froids — le blanc fait le travail */
+  --color-bg:             #FFFFFF;
   --color-surface:        #FFFFFF;
-  --color-bg-alt:         #F1F0EC;
-  --color-border:         #E2E1DC;
+  --color-bg-alt:         #F7F7F6;
+  --color-border:         #E7E7E4;
 
   /* Textes */
-  --color-text:           #15151A;
-  --color-text-muted:     #6B6760;
-  --color-text-inverse:   #FAFAF7;
+  --color-text:           #131313;
+  --color-text-muted:     #6E6E6B;
+  --color-text-inverse:   #FFFFFF;
 
-  /* Accent vif — CTA, énergie */
-  --color-accent:         #B89968;
-  --color-accent-dark:    #9C7E50;
+  /* Accent = noir. La couleur ne sert plus à décorer, seulement à agir. */
+  --color-accent:         #1A1A1A;
+  --color-accent-dark:    #000000;
+
+  /* Gris des eyebrows — hiérarchie sans couleur */
+  --color-eyebrow:        #8A8A85;
 
   /* États système */
   --color-success:        #2D7A4F;
   --color-error:          #C5384B;
-  --color-star:           #C9A876;
+  /* Seule touche de couleur conservée : les étoiles.
+     Jaune officiel des avis Google (Google Yellow 500) — reconnaissable
+     au premier coup d'œil, c'est tout l'intérêt. */
+  --color-star:           #FBBC04;
 
   /* Typographies */
   --font-serif: 'DM Serif Display', Georgia, 'Times New Roman', serif;
@@ -126,7 +132,7 @@ a {
   color: var(--color-primary);
   transition: color var(--dur-fast) var(--ease-out);
 }
-a:hover { color: var(--color-accent); }
+a:hover { color: var(--color-text-muted); }
 
 ::selection {
   background: var(--color-accent);
@@ -188,7 +194,7 @@ a:hover { color: var(--color-accent); }
   font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: var(--color-accent);
+  color: var(--color-eyebrow);
 }
 
 
@@ -201,10 +207,12 @@ a:hover { color: var(--color-accent); }
   justify-content: center;
   gap: var(--sp-2);
   font-family: var(--font-sans);
-  font-size: var(--fs-body);
+  font-size: var(--fs-small);
   font-weight: 600;
-  padding: 0.875rem 1.75rem;
-  border-radius: var(--radius-md);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 1.125rem 2.25rem;
+  border-radius: 3px;
   border: 1px solid transparent;
   cursor: pointer;
   text-align: center;
@@ -222,12 +230,10 @@ a:hover { color: var(--color-accent); }
 .btn-primary {
   background: var(--color-accent);
   color: #fff;
-  box-shadow: 0 2px 10px rgba(184, 153, 104, 0.25);
 }
 .btn-primary:hover {
   background: var(--color-accent-dark);
   color: #fff;
-  box-shadow: 0 4px 20px rgba(184, 153, 104, 0.35);
 }
 
 .btn-ghost {
@@ -242,8 +248,8 @@ a:hover { color: var(--color-accent); }
 }
 
 .btn-sm {
-  padding: 0.625rem 1.125rem;
-  font-size: var(--fs-small);
+  padding: 0.75rem 1.25rem;
+  font-size: var(--fs-caption);
 }
 
 .btn-block {
@@ -259,16 +265,23 @@ a:hover { color: var(--color-accent); }
   top: 0;
   z-index: 100;
   height: var(--header-height);
-  background: rgba(250, 250, 247, 0.92);
-  backdrop-filter: saturate(180%) blur(12px);
-  -webkit-backdrop-filter: saturate(180%) blur(12px);
+  /* En haut de page : totalement transparent, le header se fond dans
+     le blanc du hero. Pas de bandeau grisâtre au-dessus du hero. */
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
   border-bottom: 1px solid transparent;
   transition: border-color var(--dur-base) var(--ease-out),
-              background var(--dur-base) var(--ease-out);
+              background var(--dur-base) var(--ease-out),
+              backdrop-filter var(--dur-base) var(--ease-out);
 }
+/* Au scroll : voile blanc translucide + flou. On lit le menu par-dessus
+   le contenu qui défile, sans masquer complètement ce qui passe dessous. */
 .site-header.is-scrolled {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: saturate(180%) blur(14px);
+  -webkit-backdrop-filter: saturate(180%) blur(14px);
   border-bottom-color: var(--color-border);
-  background: rgba(255, 255, 255, 0.96);
 }
 
 .header-inner {
@@ -379,157 +392,50 @@ a:hover { color: var(--color-accent); }
 
 
 /* ═══════════════════════════════════════════════════════════
-   HERO
+   HERO — split blanc : texte à gauche, média à droite
    ═══════════════════════════════════════════════════════════ */
 .hero {
-  position: relative;
-  background: var(--color-bg);
-  padding: 0;
-  min-height: clamp(540px, 75vh, 760px);
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-}
-
-/* Image en couche de fond, à pleine qualité, avec vignettage subtil */
-.hero::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background-image: url("../img/salon-maison-v2.jpg");
-  background-size: cover;
-  background-position: center center;
-  z-index: 0;
-}
-/* Scrim cinématique : l'image est ternie côté texte (gauche) pour un
-   contraste fort et un rendu premium, puis s'éclaircit vers la droite. */
-.hero::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(
-      90deg,
-      rgba(18, 33, 56, 0.82) 0%,
-      rgba(18, 33, 56, 0.62) 40%,
-      rgba(18, 33, 56, 0.22) 72%,
-      rgba(18, 33, 56, 0.06) 100%
-    ),
-    linear-gradient(
-      180deg,
-      rgba(18, 33, 56, 0.22) 0%,
-      rgba(18, 33, 56, 0.08) 45%,
-      rgba(18, 33, 56, 0.38) 100%
-    );
-  z-index: 1;
-  pointer-events: none;
-}
-
-.hero .container {
-  width: 100%;
-  position: relative;
-  z-index: 2;
-  padding-block: clamp(2rem, 4vw, 3rem);
+  background: var(--color-surface);
+  padding-block: clamp(2.5rem, 6vw, 5.5rem) clamp(3rem, 7vw, 6rem);
 }
 
 .hero-inner {
-  display: block;
-}
-
-/* Plus d'encart : le texte est posé directement sur l'image. */
-.hero-content {
-  max-width: 680px;
-  position: relative;
-  padding-top: var(--sp-6);
-}
-
-/* Détail premium : court trait d'accent au-dessus du texte */
-.hero-content::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 56px;
-  height: 3px;
-  background: var(--color-accent);
-  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
-}
-
-/* ── Texte clair, fort contraste, sur l'image ──
-   Sélecteurs préfixés .hero pour gagner la cascade face aux
-   règles .hero-sub / .hero-signals définies plus bas. */
-.hero .eyebrow {
-  color: var(--color-accent);
-}
-.hero .hero-title {
-  color: #fff;
-  text-shadow: 0 2px 18px rgba(10, 20, 35, 0.45);
-}
-.hero .hero-title-accent {
-  color: var(--color-accent);
-}
-.hero .hero-sub {
-  color: rgba(255, 255, 255, 0.95);
-  text-shadow: 0 1px 10px rgba(10, 20, 35, 0.45);
-  max-width: 540px;
-}
-.hero .hero-signals {
-  color: rgba(255, 255, 255, 0.85);
-}
-.hero .signal-check {
-  display: inline-flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: clamp(2.5rem, 5vw, 3.5rem);
   align-items: center;
-  justify-content: center;
-  width: 1.4rem;
-  height: 1.4rem;
-  border-radius: 50%;
-  background: var(--color-accent);
-  color: #fff;
-  font-size: 0.78rem;
-  font-weight: 700;
-  flex-shrink: 0;
 }
-.hero .btn-ghost {
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.55);
-  background: rgba(255, 255, 255, 0.06);
-}
-.hero .btn-ghost:hover {
-  background: #fff;
-  color: #142138;
-  border-color: #fff;
+@media (min-width: 900px) {
+  .hero-inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+    gap: clamp(3rem, 6vw, 5.5rem);
+  }
 }
 
-@media (max-width: 640px) {
-  .hero-content {
-    max-width: none;
-    width: 100%;
-  }
-  /* Sur mobile, l'image est recadrée sur sa partie droite
-     (le peintre) — plus flatteur que le centre/gauche. */
-  .hero::before {
-    background-position: 78% center;
-  }
+.hero-content {
+  max-width: 620px;
 }
 
 .hero-title {
-  font-size: var(--fs-display);
-  line-height: 1.05;
+  /* Volontairement plus petit que --fs-display : le titre du peintre est
+     long, à 72px il tombait en 4 lignes avec « peinture, » orphelin. */
+  font-size: clamp(2.25rem, 2.4vw + 0.9rem, 3.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.015em;
+  color: var(--color-text);
   margin-block: var(--sp-4) var(--sp-6);
-  letter-spacing: -0.02em;
 }
 
+/* Deuxième ligne du titre : même noir, simple passage à la ligne. */
 .hero-title-accent {
   display: block;
-  color: var(--color-accent);
-  margin-top: var(--sp-3);
 }
 
 .hero-sub {
   font-size: var(--fs-lead);
   color: var(--color-text-muted);
-  line-height: 1.55;
-  max-width: 560px;
+  line-height: 1.7;
+  max-width: 440px;
 }
 
 .hero-actions {
@@ -543,7 +449,7 @@ a:hover { color: var(--color-accent); }
   display: flex;
   align-items: center;
   gap: var(--sp-2);
-  margin-top: var(--sp-6);
+  margin-top: var(--sp-8);
   font-size: var(--fs-small);
   color: var(--color-text-muted);
 }
@@ -552,6 +458,156 @@ a:hover { color: var(--color-accent); }
   color: var(--color-star);
   letter-spacing: 1px;
   font-size: 1rem;
+}
+
+/* ── Média : cadre à coins arrondis, ratio stable (pas de CLS) ── */
+.hero-media {
+  position: relative;
+}
+
+/* ── Carrousel de chantiers — défilement manuel ──
+   Le scroll natif fait tout le travail : swipe tactile, trackpad, et
+   scroll-snap pour caler chaque photo. Le JS ne pilote que ce scroll.
+   Aucun défilement automatique. */
+.hero-carousel {
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--color-bg-alt);
+}
+
+.hero-carousel-track {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  aspect-ratio: 4 / 3;
+  overflow-x: auto;
+  /* Le swipe horizontal ne doit pas déclencher le retour arrière du navigateur
+     ni entraîner le scroll vertical de la page. */
+  overscroll-behavior-x: contain;
+  touch-action: pan-x pinch-zoom;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.hero-carousel-track::-webkit-scrollbar { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-carousel-track { scroll-behavior: auto; }
+}
+
+.hero-slide {
+  flex: 0 0 100%;
+  height: 100%;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
+.hero-media img,
+.hero-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  /* Sans ça, le drag natif de l'image vole le geste de swipe. */
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+/* ── Flèches, posées sur l'image ── */
+.hero-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(19, 19, 19, 0.08);
+  background: rgba(255, 255, 255, 0.92);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: var(--color-text);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-50%);
+  transition: background var(--dur-base) var(--ease-out),
+              box-shadow var(--dur-base) var(--ease-out),
+              opacity var(--dur-base) var(--ease-out);
+}
+.hero-carousel-arrow--prev { left: var(--sp-3); }
+.hero-carousel-arrow--next { right: var(--sp-3); }
+.hero-carousel-arrow svg { width: 18px; height: 18px; }
+.hero-carousel-arrow:hover { background: #fff; box-shadow: var(--shadow-md); }
+.hero-carousel-arrow:active { transform: translateY(-50%) scale(0.94); }
+
+/* Sans JS, les flèches ne feraient rien : on ne les affiche pas.
+   Le swipe, lui, marche déjà (scroller natif). */
+.hero-carousel:not(.is-ready) .hero-carousel-arrow,
+.hero-carousel:not(.is-ready) .hero-carousel-dots { display: none; }
+
+/* ── Puces ── */
+.hero-carousel-dots {
+  position: absolute;
+  left: 50%;
+  bottom: var(--sp-3);
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.82);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(19, 19, 19, 0.06);
+}
+/* Le bouton fait 20 px pour rester cliquable au pouce ;
+   la pastille visible, elle, ne fait que 7 px. */
+.hero-carousel-dot {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.hero-carousel-dot::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(19, 19, 19, 0.26);
+  transition: background var(--dur-base) var(--ease-out),
+              transform var(--dur-base) var(--ease-out);
+}
+.hero-carousel-dot.is-current::after {
+  background: var(--color-text);
+  transform: scale(1.3);
+}
+
+@media (max-width: 480px) {
+  .hero-carousel-arrow { width: 40px; height: 40px; }
+  .hero-carousel-arrow--prev { left: var(--sp-2); }
+  .hero-carousel-arrow--next { right: var(--sp-2); }
+}
+
+/* Le poster reste visible tant que la vidéo n'a pas démarré
+   (iOS mode économie d'énergie, data saver, reduced-motion). */
+.hero-media video {
+  background: var(--color-bg-alt);
+}
+
+@media (max-width: 899px) {
+  .hero-media { aspect-ratio: 3 / 2; }
+  .hero-content { max-width: none; }
 }
 
 
@@ -652,7 +708,7 @@ a:hover { color: var(--color-accent); }
   width: 120px;
   height: 120px;
   border-radius: 50%;
-  background: radial-gradient(circle at 30% 30%, rgba(184, 153, 104, 0.10), transparent 70%);
+  background: radial-gradient(circle at 30% 30%, rgba(19, 19, 19, 0.05), transparent 70%);
   pointer-events: none;
   opacity: 0;
   transition: opacity var(--dur-slow) var(--ease-out);
@@ -692,8 +748,8 @@ a:hover { color: var(--color-accent); }
   width: 64px;
   height: 64px;
   border-radius: var(--radius-md);
-  background: linear-gradient(135deg, rgba(184, 153, 104, 0.15), rgba(184, 153, 104, 0.04));
-  border: 1px solid rgba(184, 153, 104, 0.18);
+  background: var(--color-bg-alt);
+  border: 1px solid var(--color-border);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -706,7 +762,7 @@ a:hover { color: var(--color-accent); }
 }
 .service-card:hover .service-icon {
   transform: scale(1.08) rotate(-3deg);
-  background: linear-gradient(135deg, rgba(184, 153, 104, 0.22), rgba(184, 153, 104, 0.08));
+  background: #EFEFED;
 }
 
 .service-card h3 {
@@ -880,7 +936,7 @@ a:hover { color: var(--color-accent); }
 }
 .ba-handle:focus-visible { outline: none; }
 .ba-handle:focus-visible .ba-handle-knob {
-  box-shadow: 0 0 0 4px rgba(184, 153, 104, 0.4), var(--shadow-md);
+  box-shadow: 0 0 0 4px rgba(19, 19, 19, 0.35), var(--shadow-md);
 }
 .ba-handle-line {
   position: absolute;
@@ -930,23 +986,6 @@ a:hover { color: var(--color-accent); }
 }
 @media (min-width: 1024px) {
   .reviews-grid { grid-template-columns: repeat(4, 1fr); }
-}
-
-/* Variante 2-3 avis : 2 cartes plus grandes, de taille identique,
-   regroupées en un bloc compact et centré (cohérent avec la page). */
-.reviews-grid--center {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: stretch;          /* hauteurs identiques */
-  gap: var(--sp-6);
-  max-width: 960px;              /* bloc resserré, centré */
-  margin-inline: auto;
-}
-.reviews-grid--center .review {
-  flex: 1 1 0;                   /* largeurs strictement égales */
-  min-width: 300px;              /* passe en colonne sous ce seuil */
-  max-width: 480px;              /* nettement plus grandes qu'avant */
 }
 
 .review {
@@ -1069,11 +1108,7 @@ a:hover { color: var(--color-accent); }
    CONTACT
    ═══════════════════════════════════════════════════════════ */
 .contact {
-  background:
-    radial-gradient(ellipse 80% 60% at 50% -10%,
-      rgba(184, 153, 104, 0.22) 0%,
-      transparent 60%),
-    var(--color-bg);
+  background: var(--color-bg-alt);
 }
 
 .contact-inner {
@@ -1111,7 +1146,7 @@ a:hover { color: var(--color-accent); }
   color: var(--color-text);
   font-weight: 500;
 }
-.contact-info a:hover { color: var(--color-accent); }
+.contact-info a:hover { color: var(--color-text-muted); }
 
 /* Formulaire */
 .contact-form {
@@ -1238,7 +1273,7 @@ a:hover { color: var(--color-accent); }
   letter-spacing: 1px;
   text-transform: uppercase;
   color: var(--color-accent-dark);
-  background: rgba(184, 153, 104, 0.12);
+  background: var(--color-bg-alt);
   border-radius: 999px;
   padding: var(--sp-2) var(--sp-3);
   margin-bottom: var(--sp-4);
@@ -1634,4 +1669,25 @@ a:hover { color: var(--color-accent); }
 }
 @media (max-width: 480px) {
   .reviews-panel-inner { width: 100vw; }
+}
+
+
+/* ═══════════════════════════════════════════════════════════
+   VARIANTE 2-3 AVIS — bloc resserré et centré
+   ═══════════════════════════════════════════════════════════
+   Deux ou trois cartes ne remplissent pas la grille à 4 colonnes :
+   on les regroupe, à largeurs strictement égales. */
+.reviews-grid--center {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: stretch;
+  gap: var(--sp-6);
+  max-width: 960px;
+  margin-inline: auto;
+}
+.reviews-grid--center .review {
+  flex: 1 1 0;
+  min-width: 300px;
+  max-width: 480px;
 }

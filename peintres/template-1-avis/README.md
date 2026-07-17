@@ -71,14 +71,17 @@ Tout le design system est dans **`css/style.css` lignes 1-90** sous `:root { …
 
 ### Changer la couleur d'accent (CTA, soulignements)
 ```css
---color-accent:      #E8753A;    /* orange chaud — actuel */
---color-accent-dark: #C95C24;    /* hover */
+--color-accent:      #1A1A1A;    /* noir — actuel */
+--color-accent-dark: #000000;    /* hover */
 ```
+La DA ne se sert plus de la couleur pour décorer, seulement pour agir : l'accent
+est noir. La seule couleur conservée est le jaune des étoiles Google
+(`--color-star: #FBBC04`), justement parce qu'il est reconnaissable.
 
 ### Changer la couleur primary (titres, footer, brand)
 ```css
---color-primary:      #1E3A5F;    /* bleu nuit — actuel */
---color-primary-dark: #142948;
+--color-primary:      #1A1A1A;    /* noir — actuel */
+--color-primary-dark: #0D0D0D;
 ```
 
 ### Changer les fonts

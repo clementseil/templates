@@ -23,14 +23,14 @@
   // 3. Première lettre, en majuscule (gère bien les caractères accentués)
   const initial = name.charAt(0).toLocaleUpperCase('fr-FR');
 
-  // 4. Construit le SVG du favicon (anthracite + champagne, serif italique)
+  // 4. Construit le SVG du favicon (noir + blanc, serif italique — aligné sur la DA des templates)
   const svg =
     '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">' +
-      '<rect width="32" height="32" rx="6" fill="#1F1F23"/>' +
+      '<rect width="32" height="32" rx="6" fill="#1A1A1A"/>' +
       '<text x="16" y="23.5" ' +
             'font-family="\'DM Serif Display\',\'Times New Roman\',serif" ' +
             'font-size="22" font-style="italic" font-weight="400" ' +
-            'fill="#B89968" text-anchor="middle">' +
+            'fill="#FFFFFF" text-anchor="middle">' +
         initial +
       '</text>' +
     '</svg>';

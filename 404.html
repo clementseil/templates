@@ -5,29 +5,31 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <meta name="robots" content="noindex, nofollow" />
   <title>Page introuvable · LeSiteArtisan</title>
-  <meta name="theme-color" content="#FAF7F1" />
+  <meta name="theme-color" content="#FFFFFF" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <style>
-    /* ─── Design tokens (alignés sur les templates) ─── */
+    /* ─── Design tokens — alignés sur peintres/template-4-avis ─── */
     :root {
-      --color-primary:      #1E3A5F;
-      --color-bg:           #FAF7F1;
-      --color-bg-alt:       #F1ECE0;
-      --color-surface:      #FFFFFF;
-      --color-border:       #E5DDD0;
-      --color-text:         #1A1F26;
-      --color-text-muted:   #5C6470;
-      --color-accent:       #E8753A;
-      --color-accent-dark:  #C95C24;
+      --color-primary:      #1A1A1A;
+      --color-bg:           #FFFFFF;
+      --color-bg-alt:       #F7F7F6;
+      --color-border:       #E7E7E4;
+      --color-text:         #131313;
+      --color-text-muted:   #6E6E6B;
+      --color-eyebrow:      #8A8A85;
+      --color-accent:       #1A1A1A;
+      --color-accent-dark:  #000000;
 
-      --font-serif: 'DM Serif Display', Georgia, serif;
+      --font-serif: 'DM Serif Display', Georgia, 'Times New Roman', serif;
       --font-sans:  'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-      --ease-out:    cubic-bezier(0.16, 1, 0.3, 1);
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+      --dur-fast: 150ms;
+      --dur-base: 250ms;
     }
 
     *, *::before, *::after { box-sizing: border-box; }
@@ -45,33 +47,8 @@
       overflow-x: hidden;
     }
 
-    /* ─── Décor : courbes terracotta très douces en arrière-plan ─── */
-    body::before,
-    body::after {
-      content: "";
-      position: fixed;
-      pointer-events: none;
-      z-index: 0;
-      border-radius: 50%;
-      filter: blur(80px);
-      opacity: 0.18;
-    }
-    body::before {
-      width: 520px; height: 520px;
-      background: var(--color-accent);
-      top: -180px; left: -180px;
-    }
-    body::after {
-      width: 620px; height: 620px;
-      background: var(--color-primary);
-      bottom: -220px; right: -220px;
-      opacity: 0.10;
-    }
-
     /* ─── Header minimal ─── */
     .top {
-      position: relative;
-      z-index: 1;
       padding: clamp(1.5rem, 4vw, 2.5rem) clamp(1.5rem, 5vw, 3rem);
       display: flex;
       align-items: center;
@@ -89,21 +66,21 @@
       font-weight: 600;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: var(--color-text-muted);
+      color: var(--color-eyebrow);
     }
 
     /* ─── Bloc central ─── */
+    /* Le bloc central respire à la hauteur dispo : sur un portable 720 px
+       de haut, les boutons doivent rester au-dessus de la ligne de flottaison. */
     .stage {
-      position: relative;
-      z-index: 1;
       flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: clamp(2rem, 6vw, 4rem) clamp(1.5rem, 5vw, 3rem);
+      padding: clamp(1.5rem, 4vh, 3rem) clamp(1.5rem, 5vw, 3rem);
     }
     .card {
-      max-width: 640px;
+      max-width: 620px;
       width: 100%;
       text-align: center;
       animation: rise 0.9s var(--ease-out) both;
@@ -121,56 +98,58 @@
       font-weight: 600;
       letter-spacing: 2px;
       text-transform: uppercase;
-      color: var(--color-accent);
-      margin-bottom: 1rem;
+      color: var(--color-eyebrow);
+      margin-bottom: clamp(0.75rem, 2vh, 1.25rem);
     }
 
     .code {
       font-family: var(--font-serif);
       font-weight: 400;
       line-height: 0.95;
-      font-size: clamp(7rem, 22vw, 14rem);
-      color: var(--color-primary);
+      /* Bridé par la hauteur autant que par la largeur : un écran large mais
+         court ne doit pas pousser les boutons hors de vue. */
+      font-size: clamp(5rem, min(20vw, 21vh), 12rem);
+      color: var(--color-text);
       letter-spacing: -0.04em;
       margin: 0;
-      position: relative;
       display: inline-block;
     }
-    /* Le "0" central en terracotta italique pour un détail premium */
+    /* Le zéro en italique : seule fantaisie, la couleur ne décore pas. */
     .code .zero {
       font-style: italic;
-      color: var(--color-accent);
-      margin: 0 0.04em;
+      margin: 0 0.02em;
     }
-    /* Trait d'accent sous le code */
-    .accent-bar {
+
+    /* Filet neutre, pas un trait d'accent coloré */
+    .rule {
       display: block;
-      width: 56px;
-      height: 3px;
-      background: var(--color-accent);
-      border-radius: 999px;
-      margin: 1.5rem auto 2rem;
+      width: 100%;
+      max-width: 420px;
+      height: 1px;
+      background: var(--color-border);
+      border: 0;
+      margin: clamp(1rem, 3vh, 2rem) auto clamp(1.25rem, 3.5vh, 2.25rem);
     }
 
     h1 {
       font-family: var(--font-serif);
       font-weight: 400;
-      font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+      font-size: clamp(1.625rem, 3vw, 2.25rem);
       line-height: 1.15;
       letter-spacing: -0.015em;
-      margin: 0 0 0.75rem;
+      margin: 0 0 0.875rem;
       color: var(--color-text);
     }
     .lead {
-      font-size: clamp(1rem, 1.4vw, 1.0625rem);
-      line-height: 1.6;
+      font-size: 1.0625rem;
+      line-height: 1.7;
       color: var(--color-text-muted);
       margin: 0 auto;
-      max-width: 480px;
+      max-width: 460px;
     }
 
     .actions {
-      margin-top: 2.5rem;
+      margin-top: clamp(1.5rem, 4vh, 2.5rem);
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -179,31 +158,30 @@
     .btn {
       display: inline-flex;
       align-items: center;
+      justify-content: center;
       gap: 0.5rem;
       font-family: var(--font-sans);
+      font-size: 0.875rem;
       font-weight: 600;
-      font-size: 0.9375rem;
-      padding: 0.875rem 1.5rem;
-      border-radius: 8px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 1.125rem 2.25rem;
+      border-radius: 3px;
       border: 1px solid transparent;
       text-decoration: none;
+      white-space: nowrap;
       cursor: pointer;
-      transition: background 250ms var(--ease-out),
-                  color 250ms var(--ease-out),
-                  border-color 250ms var(--ease-out),
-                  transform 150ms var(--ease-out),
-                  box-shadow 250ms var(--ease-out);
+      transition: background var(--dur-base) var(--ease-out),
+                  color var(--dur-base) var(--ease-out),
+                  border-color var(--dur-base) var(--ease-out),
+                  transform var(--dur-fast) var(--ease-out);
     }
     .btn:active { transform: translateY(1px); }
     .btn-primary {
       background: var(--color-accent);
       color: #fff;
-      box-shadow: 0 2px 10px rgba(232, 117, 58, 0.25);
     }
-    .btn-primary:hover {
-      background: var(--color-accent-dark);
-      box-shadow: 0 4px 20px rgba(232, 117, 58, 0.35);
-    }
+    .btn-primary:hover { background: var(--color-accent-dark); color: #fff; }
     .btn-ghost {
       background: transparent;
       color: var(--color-text);
@@ -214,35 +192,30 @@
       color: #fff;
       border-color: var(--color-text);
     }
-    .arrow { transition: transform 250ms var(--ease-out); }
+    .arrow { transition: transform var(--dur-base) var(--ease-out); }
     .btn:hover .arrow { transform: translateX(3px); }
 
     /* ─── Footer minimal ─── */
     .bottom {
-      position: relative;
-      z-index: 1;
       padding: 1.5rem clamp(1.5rem, 5vw, 3rem) 2rem;
       text-align: center;
       font-size: 0.8125rem;
       color: var(--color-text-muted);
+      border-top: 1px solid var(--color-border);
     }
     .bottom a {
       color: var(--color-text);
       text-decoration: none;
       border-bottom: 1px solid var(--color-border);
-      transition: color 250ms var(--ease-out),
-                  border-color 250ms var(--ease-out);
+      transition: border-color var(--dur-base) var(--ease-out);
     }
-    .bottom a:hover {
-      color: var(--color-accent);
-      border-bottom-color: var(--color-accent);
-    }
+    .bottom a:hover { border-bottom-color: var(--color-text); }
 
     @media (max-width: 480px) {
       .top { padding-block: 1.25rem; }
       .top-meta { display: none; }
       .actions { flex-direction: column; align-items: stretch; }
-      .btn { justify-content: center; }
+      .btn { width: 100%; }
     }
   </style>
 </head>
@@ -261,7 +234,7 @@
         4<span class="zero">0</span>4
       </h2>
 
-      <span class="accent-bar" aria-hidden="true"></span>
+      <hr class="rule" aria-hidden="true">
 
       <h1>Cette page n'existe pas — ou plus.</h1>
       <p class="lead">

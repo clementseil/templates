@@ -463,18 +463,140 @@ a:hover { color: var(--color-text-muted); }
 /* ── Média : cadre à coins arrondis, ratio stable (pas de CLS) ── */
 .hero-media {
   position: relative;
+}
+
+/* ── Carrousel de chantiers — défilement manuel ──
+   Le scroll natif fait tout le travail : swipe tactile, trackpad, et
+   scroll-snap pour caler chaque photo. Le JS ne pilote que ce scroll.
+   Aucun défilement automatique. */
+.hero-carousel {
+  position: relative;
   border-radius: 14px;
   overflow: hidden;
   background: var(--color-bg-alt);
-  aspect-ratio: 4 / 3;
 }
 
-.hero-media video,
-.hero-media img {
+.hero-carousel-track {
+  display: flex;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  aspect-ratio: 4 / 3;
+  overflow-x: auto;
+  /* Le swipe horizontal ne doit pas déclencher le retour arrière du navigateur
+     ni entraîner le scroll vertical de la page. */
+  overscroll-behavior-x: contain;
+  touch-action: pan-x pinch-zoom;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.hero-carousel-track::-webkit-scrollbar { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-carousel-track { scroll-behavior: auto; }
+}
+
+.hero-slide {
+  flex: 0 0 100%;
+  height: 100%;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
+.hero-media img,
+.hero-slide img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
+  /* Sans ça, le drag natif de l'image vole le geste de swipe. */
+  -webkit-user-drag: none;
+  user-select: none;
+}
+
+/* ── Flèches, posées sur l'image ── */
+.hero-carousel-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: var(--radius-full);
+  border: 1px solid rgba(19, 19, 19, 0.08);
+  background: rgba(255, 255, 255, 0.92);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  color: var(--color-text);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-50%);
+  transition: background var(--dur-base) var(--ease-out),
+              box-shadow var(--dur-base) var(--ease-out),
+              opacity var(--dur-base) var(--ease-out);
+}
+.hero-carousel-arrow--prev { left: var(--sp-3); }
+.hero-carousel-arrow--next { right: var(--sp-3); }
+.hero-carousel-arrow svg { width: 18px; height: 18px; }
+.hero-carousel-arrow:hover { background: #fff; box-shadow: var(--shadow-md); }
+.hero-carousel-arrow:active { transform: translateY(-50%) scale(0.94); }
+
+/* Sans JS, les flèches ne feraient rien : on ne les affiche pas.
+   Le swipe, lui, marche déjà (scroller natif). */
+.hero-carousel:not(.is-ready) .hero-carousel-arrow,
+.hero-carousel:not(.is-ready) .hero-carousel-dots { display: none; }
+
+/* ── Puces ── */
+.hero-carousel-dots {
+  position: absolute;
+  left: 50%;
+  bottom: var(--sp-3);
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 2px 6px;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.82);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(19, 19, 19, 0.06);
+}
+/* Le bouton fait 20 px pour rester cliquable au pouce ;
+   la pastille visible, elle, ne fait que 7 px. */
+.hero-carousel-dot {
+  width: 20px;
+  height: 20px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.hero-carousel-dot::after {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(19, 19, 19, 0.26);
+  transition: background var(--dur-base) var(--ease-out),
+              transform var(--dur-base) var(--ease-out);
+}
+.hero-carousel-dot.is-current::after {
+  background: var(--color-text);
+  transform: scale(1.3);
+}
+
+@media (max-width: 480px) {
+  .hero-carousel-arrow { width: 40px; height: 40px; }
+  .hero-carousel-arrow--prev { left: var(--sp-2); }
+  .hero-carousel-arrow--next { right: var(--sp-2); }
 }
 
 /* Le poster reste visible tant que la vidéo n'a pas démarré

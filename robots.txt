@@ -1,0 +1,3 @@
+# apercu.lesiteartisan.fr — maquettes de prospection, hors index.
+User-agent: *
+Disallow: /

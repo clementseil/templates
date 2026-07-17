@@ -218,9 +218,14 @@ module.exports = async (req, res) => {
     const templateDir = pickTemplateDir(data._nbAvis);
     const templatePath = path.join(process.cwd(), 'peintres', templateDir, 'index.html');
 
-    // og_image : URL absolue vers le hero du template (pour les previews DM/Insta/etc.)
-    // Doit être absolu car les balises og:image / twitter:image ne supportent pas le relatif.
-    data.og_image = `${HOST}/peintres/${templateDir}/assets/img/hero-painter.jpg`;
+    // og_image : URL absolue vers la photo du hero. Seul {{og_image}} du JSON-LD
+    // l'utilise (les balises og:/twitter: pointent, elles, sur /og-image.jpg).
+    // Doit être absolu : Schema.org comme og:image ne gèrent pas le relatif.
+    // C'est la 1re photo du carrousel : une pièce réelle, sans texte ni marque.
+    // (Avant : hero-painter.jpg — une image IA filigranée, portant une marque
+    // inventée « L DUBOIS » et les couleurs de l'ancienne DA. Elle représentait
+    // donc chaque prospect sous un faux nom auprès de Google.)
+    data.og_image = `${HOST}/peintres/${templateDir}/assets/img/salon-maison-v2.jpg`;
 
     if (!fs.existsSync(templatePath)) {
       console.error(`Template introuvable : ${templatePath}`);
